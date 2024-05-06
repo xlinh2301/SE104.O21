@@ -2,9 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js"
+    "start": "nodemon --inspect server.js",
+    "watch": "sass --watch src/resources/scss/app.scss:src/public/css/app.css --no-source-map"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,13 @@
   "homepage": "https://github.com/xlinh2301/SE104.O21#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "express-handlebars": "^7.1.2"
+    "express-handlebars": "^7.1.2",
+    "mongoose": "^8.3.3"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sass": "^1.76.0"
   }
 }
