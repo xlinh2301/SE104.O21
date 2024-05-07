@@ -5,14 +5,16 @@
 MongoDB, Expressjs, React, Nodejs
 </p>
 
-<p align="center">
-   <a href="https://github.com/amazingandyyy/mern/blob/master/LICENSE">
-      <img src="https://img.shields.io/badge/License-MIT-green.svg" />
-   </a>
-   <a href="https://circleci.com/gh/amazingandyyy/mern">
-      <img src="https://circleci.com/gh/amazingandyyy/mern.svg?style=svg" />
-   </a>
-</p>
+<table align="center">
+  <tr>
+    <th>Tên</th>
+    <th>MSSV</th>
+  </tr>
+  <tr>
+    <td>Nguyễn Xuân Linh</td>
+    <td>22520775</td>
+  </tr>
+</table>
 
 ## clone or download
 ```terminal
