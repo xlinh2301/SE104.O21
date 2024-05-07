@@ -14,6 +14,10 @@ MongoDB, Expressjs, React, Nodejs
     <td>Nguyễn Xuân Linh</td>
     <td>22520775</td>
   </tr>
+  <tr>
+    <td>Lưu Khánh Vinh</td>
+    <td>22521671</td>
+  </tr>
 </table>
 
 ## clone or download
