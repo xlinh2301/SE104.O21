@@ -18,11 +18,19 @@ MongoDB, Expressjs, React, Nodejs
     <td>Lưu Khánh Vinh</td>
     <td>22521671</td>
   </tr>
+  <tr>
+    <td>Nguyễn Hữu Đức</td>
+    <td>22520270</td>
+  </tr>
+  <tr>
+    <td>Nguyễn Tường Duy</td>
+    <td>21520782</td>
+  </tr>
 </table>
 
 ## clone or download
 ```terminal
-$ git clone [https://github.com/amazingandyyy/mern.git](https://github.com/xlinh2301/SE104.O21.git)
+$ git clone https://github.com/xlinh2301/SE104.O21.git
 $ yarn # or npm i
 ```
 
@@ -30,30 +38,12 @@ $ yarn # or npm i
 
 ## Prerequisites
 - [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
-- [Node](https://nodejs.org/en/download/) ^10.0.0
+- [Node](https://nodejs.org/en/download/) 
 - [npm](https://nodejs.org/en/download/package-manager/)
 
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
 ## Client-side usage(PORT: 3000)
-```terminal
-$ cd client          // go to client folder
-$ yarn # or npm i    // npm install packages
-$ npm run dev        // run it locally
-
-// deployment for client app
-$ npm run build // this will compile the react code using webpack and generate a folder called docs in the root level
-$ npm run start // this will run the files in docs, this behavior is exactly the same how gh-pages will run your static site
-```
-
-## Server-side usage(PORT: 3001)
-
-### Prepare your secret
-
-run the script at the first level:
-
-(You need to add a JWT_SECRET in .env to connect to MongoDB)
-
 ### Project Initialization
 
 ```terminal
@@ -66,18 +56,26 @@ $ npm init
 $ cd fontend-ui
 $ npm install
 $ npm install bootstrap axios react-router-dom
+```
+### Run
+```terminal
+$ npm start
+```
+## Server-side usage(PORT: 3001)
+### Project Initialization
 
+```terminal
+$ mkdir your-project-name
+$ cd your-project-name
+$ npm init
+```
+### Install Dependencies
+```terminal
 $ cd Backend
 $ npm init -y
 $ npm install express mongoose cors nodemon
 ```
 ### Run the Development Server
 ```terminal
-$ cd Backend
-$ npm start
-```
-### Run fontend
-```terminal
-$ cd fontend-ui
 $ npm start
 ```
