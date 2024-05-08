@@ -6,9 +6,9 @@ const homeRoute = require("./Home")
 
 
 function route(app) {
-  app.use('/', homeRoute)
   app.use('/login', loginRoute)
   app.use('/register', signupRoute)
+  app.use('/', homeRoute)
 }
 
 module.exports = route;  

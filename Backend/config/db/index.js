@@ -1,5 +1,3 @@
-// config/db/index.js
-
 const mongoose = require('mongoose')
 
 async function connect() {

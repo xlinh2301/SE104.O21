@@ -6,7 +6,6 @@ class LoginController {
   index(req, res) {
     const { email, password } = req.body;
     CayGPSchema.findOne({ email: email })
-
       .then(user => {
         if (user) {
           if (user.password === password) {
