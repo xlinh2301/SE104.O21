@@ -1,3 +1,5 @@
+//model/caygiapha.js
+
 const mongoose = require('mongoose')
 
 const CayGPSchema = new mongoose.Schema({
@@ -6,6 +8,6 @@ const CayGPSchema = new mongoose.Schema({
   password: String
 })
 
-const CaygiaphaModel = mongoose.model("SE104", CayGPSchema)
+const CaygiaphaModel = mongoose.model("se104", CayGPSchema)
 
 module.exports = CaygiaphaModel
