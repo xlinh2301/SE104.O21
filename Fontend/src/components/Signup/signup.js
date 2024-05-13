@@ -7,13 +7,14 @@ import "./signup.scss"
 function Signup() {
 
   const [name, setName] = useState()
-  const [email, setEmail] = useState()
+  const [account, setAccount] = useState()
   const [password, setPassword] = useState()
+  const [email, setEmail] = useState()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/register", { name, email, password })
+    axios.post("http://localhost:3001/register", { name, account, password, email })
       .then(result => {
         console.log(result)
         navigate("/login")
@@ -23,57 +24,89 @@ function Signup() {
 
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="bg-white p-3 rounded w-25">
-        <h2><center>Sign Up</center></h2>
+    <div className="signup">
+      <div class="signup-header">
+        <ul class="signup-nav">
+          <li class="signup-nav-item">
+            <a class="signup-nav-item-text active" aria-current="page" href="\">Trang chủ</a>
+          </li>
+          <li class="signup-nav-item">
+            <a class="signup-nav-item-text" href=".\login">Cây</a>
+          </li>
+          <li class="signup-nav-item">
+            <a class="signup-nav-item-text" href="#">Liên hệ</a>
+          </li>
+        </ul>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Name</strong>
-            </label>
-            <input type="text"
-              placeholder='Enter Name'
-              autoComplete='off'
-              name='email'
-              className='form-control rounded-0'
-              onChange={(e) => setName(e.target.value)}
-            />
+        <div class="signup-nav-login">
+          <a class="signup-nav-login-text" href=".\login">Đăng nhập</a>
+        </div>
+      </div>
+
+      <div className="signup-body">
+        <div className="signup-body-text">
+          <p className="signup-body-text-1">Đăng kí tài khoản</p>
+          <p className="signup-body-text-2">Sử dụng miễn phí hệ thống gia phả cho gia đình bạn</p>
+        </div>
+        <div className="signup-body-box">
+          <form className="signup-body-box-1" onSubmit={handleSubmit}>
+            <div className="signup-body-box-child">
+              <label htmlFor="email">
+                <p className='signup-body-box-child-text'>Họ tên</p>
+              </label>
+              <input type="text"
+                placeholder=''
+                autoComplete='off'
+                name='email'
+                className='signup-body-box-input'
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="signup-body-box-child">
+              <label htmlFor="text">
+                <p className='signup-body-box-child-text'>Tài khoản đăng nhập</p>
+              </label>
+              <input type="text"
+                placeholder=''
+                autoComplete='off'
+                name='email'
+                className='signup-body-box-input'
+                onChange={(e) => setAccount(e.target.value)}
+              />
+            </div>
+            <div className="signup-body-box-child">
+              <label htmlFor="email">
+                <p className='signup-body-box-child-text'>Mật khẩu</p>
+              </label>
+              <input type="password"
+                placeholder=''
+                name='password'
+                className='signup-body-box-input'
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="signup-body-box-child">
+              <label htmlFor="email">
+                <p className='signup-body-box-child-text'>Email</p>
+              </label>
+              <input type="email"
+                placeholder=''
+                name='email'
+                className='signup-body-box-input'
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="signup-body-box-button">
+              Đăng kí
+            </button>
+          </form>
+          <div className="signup-body-footer">
+            <p className="signup-body-footer-text">Bạn đã có tài khoản?</p>
+            <Link to="/login" className="signup-body-box-login">
+              Đăng nhập
+            </Link>
           </div>
-          <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Email</strong>
-            </label>
-            <input type="text"
-              placeholder='Enter Email'
-              autoComplete='off'
-              name='email'
-              className='form-control rounded-0'
-              onChange={(e) => setEmail(e.target.value)}
-
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Password</strong>
-            </label>
-            <input type="password"
-              placeholder='Enter Password'
-              name='password'
-              className='form-control rounded-0'
-              onChange={(e) => setPassword(e.target.value)}
-
-            />
-          </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
-            Sign Up
-          </button>
-        </form>
-        <p>Already have an account?</p>
-        <Link to="/login" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-          Login
-        </Link>
-
+        </div>
       </div>
     </div>
   );
