@@ -1,25 +1,40 @@
-// import { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import Signup from './components/Signup/signup'
-import Login from './components/Login/login'
-import Home from './components/Home/home'
-import Main from './components/Main/main'
-
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+import DefaultLayout from '~/layouts';
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/register' element={<Signup />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/main' element={<Main />} />
-        <Route path='/' element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  )
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            let Layout = DefaultLayout;
+
+            if (route.layout) {
+              Layout = route.layout;
+            } else if (route.layout === null) {
+              Layout = Fragment;
+            }
+
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
