@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import "./login.scss"
 
-function Login() {
+export const Login = () => {
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -72,5 +72,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

@@ -2,9 +2,9 @@ import React from "react";
 import "./home.scss"
 import { Link } from "react-router-dom"
 
-function Home() {
+export const Home = () => {
   return (
-    <center>
+    <center className="body">
       <h1>
         This is Home Component
       </h1>
@@ -18,4 +18,4 @@ function Home() {
   )
 }
 
-export default Home;
+// export default Home;
