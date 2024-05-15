@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/xlinh2301/SE104.O21#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "env": "^0.0.2",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "mongoose": "^8.3.3"
