@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar">
-        <p className="sidebar__header">Cây gia phả</p>
+        <p className="sidebar__header">Bảng điều khiển</p>
         <Link to="/caygiapha">
           <span className="sidebar__span">Gia phả</span>
         </Link>

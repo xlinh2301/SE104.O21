@@ -4,10 +4,8 @@ import { Link } from "react-router-dom"
 
 export const Main = () => {
   return (
-    <>
-      <div className="body-main">
-        <p>Nội dung</p>
-      </div>
-    </>
+    <div className="main-body">
+      <p>Nội dung</p>
+    </div>
   )
 }

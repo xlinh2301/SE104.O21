@@ -1,94 +1,92 @@
-.signup {
+.signup-body {
+  margin-top: 0;
+  width: 100%;
+  height: 596px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #DEFFE1;
 
-  .signup-body {
-    margin-top: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #DEFFE1;
+  &-text {
+    color: #000;
+    font-family: "Microsoft YaHei UI";
+    font-style: normal;
+    line-height: normal;
+    width: 40%;
 
-    &-text {
-      color: #000;
-      font-family: "Microsoft YaHei UI";
-      font-style: normal;
-      line-height: normal;
-      width: 40%;
-
-      &-1 {
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      &-2 {
-        font-size: 16px;
-      }
+    &-1 {
+      font-size: 24px;
+      font-weight: 700;
     }
 
-    &-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      width: 40%;
+    &-2 {
+      font-size: 16px;
+    }
+  }
 
-      &-1 {
-        width: 100%;
+  &-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
 
-        .signup-body-box-child {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          margin: 10px;
-          width: 100%;
+    &-1 {
+      width: 100%;
 
-          &-text {
-            margin: 5px 0;
-            color: #707070;
-            font-family: "Microsoft YaHei UI";
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-          }
-
-          &-input {
-            margin: 0;
-            width: 100%;
-          }
-
-        }
-
-        .signup-body-box-button {
-          width: 100%;
-          height: 30px;
-          margin: 10px;
-          background-color: #6eb1ff;
-          color: #FFF;
-          border: none;
-          border-radius: 5px;
-
-          &:hover {
-            background-color: #53a0f8;
-          }
-        }
-      }
-
-      .signup-body-footer {
+      .signup-body-box-child {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        margin: 10px;
+        width: 100%;
 
         &-text {
-          margin: 5px;
+          margin: 5px 0;
+          color: #707070;
+          font-family: "Microsoft YaHei UI";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
         }
 
-        .signup-body-box-login {
-          margin: 5px;
+        .signup-body-box-input {
+          margin: 0;
+          width: 100%;
+          height: 30px;
         }
+
       }
 
+      .signup-body-box-button {
+        width: 100%;
+        height: 30px;
+        margin: 10px;
+        background-color: #6eb1ff;
+        color: #FFF;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #53a0f8;
+        }
+      }
     }
+
+    .signup-body-footer {
+      display: flex;
+      justify-content: center;
+
+      &-text {
+        margin: 5px;
+      }
+
+      .signup-body-box-login {
+        margin: 5px;
+      }
+    }
+
   }
 }
