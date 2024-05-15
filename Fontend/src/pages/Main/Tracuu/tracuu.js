@@ -11,6 +11,7 @@ export const Tracuu = () => {
     try {
       const response = await fetch(`http://localhost:3001/tracuu`);
       const data = await response.json();
+      console.log('Success')
       setResult(data);
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -33,8 +34,8 @@ export const Tracuu = () => {
       {result && (
         <div>
           <h3>Kết quả:</h3>
-          <p>Mã Thành Viên: {result.maSo}</p>
-          <p>Họ Tên: {result.hoTen}</p>
+          <p>Mã Thành Viên: {result.mathanhvien}</p>
+          <p>Họ Tên: {result.hoten}</p>
           <p>Quê Quán: {result.quequan}</p>
         </div>
       )}
