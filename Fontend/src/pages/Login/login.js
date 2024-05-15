@@ -29,45 +29,46 @@ export const Login = () => {
 
 
   return (
-    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="bg-white p-3 rounded w-25">
-        <h2><center>Login</center></h2>
-        <form onSubmit={handleSubmit}>
+    <div className="login-main">
+      <div className="login-box">
+        <h2 className="login-header"><center>Đăng nhập</center></h2>
+        <form className="login-form" onSubmit={handleSubmit}>
 
-          <div className="mb-3">
+          <div className="login-input">
             <label htmlFor="email">
-              <strong>Email</strong>
+              <strong>Tên đăng nhập</strong>
             </label>
             <input type="text"
-              placeholder='Enter Email'
+              placeholder=''
               autoComplete='off'
               name='email'
-              className='form-control rounded-0'
+              className='login-input-text'
               onChange={(e) => setEmail(e.target.value)}
 
             />
           </div>
-          <div className="mb-3">
+          <div className="login-input">
             <label htmlFor="email">
-              <strong>Password</strong>
+              <strong>Mật khẩu</strong>
             </label>
             <input type="password"
-              placeholder='Enter Password'
+              placeholder=''
               name='password'
-              className='form-control rounded-0'
+              className='login-input-text'
               onChange={(e) => setPassword(e.target.value)}
 
             />
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
-            Login
+          <button type="submit" className="login-button">
+            Đăng nhập
           </button>
         </form>
-        <p>Don't have an account?</p>
-        <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-          Sign Up
-        </Link>
-
+        <div className="login-signup">
+          <p className="login-signup-text">Bạn chưa có tài khoản? </p>
+          <Link to="/register" className="login-signup-link">
+            Đăng kí
+          </Link>
+        </div>
       </div>
     </div>
   );
