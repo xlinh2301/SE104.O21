@@ -9,29 +9,36 @@
   height: 100vh;
   z-index: 2;
 
-  &__header {
+  &-header {
+    margin: 20px;
+    color: #000;
     text-align: center;
+    font-family: "Tahoma", "Helvetica Neue", ;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
   }
 
-  &__container {
-    margin-top: 40px;
+  &-container {
+    margin-top: 20px;
 
-    &__span {
+    &-span {
       display: flex;
       align-items: center;
-      background-color: #AAEB99;
       height: 50px;
       color: black;
       padding-left: 20px;
+      border-color: #000;
+      border-style: solid;
     }
 
-    &__span:hover {
+    &-span:hover {
       background-color: white;
     }
 
-    .active {
-      background-color: white;
-    }
+
 
     // &__span:first-child {
     //   margin-top: 3px;

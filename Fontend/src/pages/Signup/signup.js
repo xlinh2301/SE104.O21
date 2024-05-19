@@ -33,13 +33,12 @@ export const Signup = () => {
         <div className="signup-body-box">
           <form className="signup-body-box-1" onSubmit={handleSubmit}>
             <div className="signup-body-box-child">
-              <label htmlFor="email">
+              <label htmlFor="text">
                 <p className='signup-body-box-child-text'>Họ tên</p>
               </label>
               <input type="text"
                 placeholder=''
                 autoComplete='off'
-                name='email'
                 className='signup-body-box-input'
                 onChange={(e) => setName(e.target.value)}
               />
@@ -51,7 +50,6 @@ export const Signup = () => {
               <input type="text"
                 placeholder=''
                 autoComplete='off'
-                name='email'
                 className='signup-body-box-input'
                 onChange={(e) => setAccount(e.target.value)}
               />

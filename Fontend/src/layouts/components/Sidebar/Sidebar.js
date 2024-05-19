@@ -39,16 +39,16 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar">
-        <p className="sidebar__header">Cây gia phả</p>
-        <div className='sidebar__container'>
-          <span className="sidebar__container__span active" onClick={Giapha}>Gia phả</span>
-          <span className="sidebar__container__span" onClick={Tracuu}>Tra cứu</span>
-          <span className="sidebar__container__span" onClick={Themthanhvien}>Thêm thành viên</span>
-          <span className="sidebar__container__span" onClick={Themthanhtich}>Thêm thành tích</span>
-          <span className="sidebar__container__span" onClick={Thaydoithongtin}>Thay đổi thông tin</span>
-          <span className="sidebar__container__span" onClick={Ghinhanketthuc}>Ghi nhận kết thúc</span>
-          <span className="sidebar__container__span" onClick={Lapbaocao}>Lập báo cáo</span>
-          <span className="sidebar__container__span" onClick={logout}>Đăng xuất</span>
+        <p className="sidebar-header">Bảng điều khiển</p>
+        <div className='sidebar-container'>
+          <span className="sidebar-container-span" onClick={Giapha}>Gia phả</span>
+          <span className="sidebar-container-span" onClick={Tracuu}>Tra cứu</span>
+          <span className="sidebar-container-span" onClick={Themthanhvien}>Thêm thành viên</span>
+          <span className="sidebar-container-span" onClick={Themthanhtich}>Thêm thành tích</span>
+          <span className="sidebar-container-span" onClick={Thaydoithongtin}>Thay đổi thông tin</span>
+          <span className="sidebar-container-span" onClick={Ghinhanketthuc}>Ghi nhận kết thúc</span>
+          <span className="sidebar-container-span" onClick={Lapbaocao}>Lập báo cáo</span>
+          <span className="sidebar-container-span" onClick={logout}>Đăng xuất</span>
         </div>
       </div>
     </>

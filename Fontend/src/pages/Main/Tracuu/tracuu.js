@@ -16,26 +16,36 @@ export const Tracuu = () => {
       console.error('Error fetching user:', error);
     }
   };
+  const DATA_TEST = [{ name: 'test1', id: 'test1' }, { name: 'test2', id: 'test2' }]
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className='body__tracuu'>
-        <div>
-          <label>Họ Tên:</label>
-          <input type="text" value={hoTen} onChange={(e) => setHoTen(e.target.value)} required />
+      <form onSubmit={handleSubmit} className='tracuu-body'>
+        <div className="tracuu-body-search">
+          <input className='tracuu-body-search-name' type="text" placeholder='Họ và tên' value={hoTen} onChange={(e) => setHoTen(e.target.value)} required />
+          <input className="tracuu-body-search-id" type="text" placeholder='Mã thành viên' value={maSo} onChange={(e) => setMaSo(e.target.value)} required />
         </div>
-        <div>
-          <label>Mã Số:</label>
-          <input type="text" value={maSo} onChange={(e) => setMaSo(e.target.value)} required />
-        </div>
-        <button type="submit">Tìm kiếm</button>
+        <button className='tracuu-body-search-button' type="submit">Tìm kiếm</button>
       </form>
       {result && (
+
         <div>
-          <h3>Kết quả:</h3>
-          <p>Mã Thành Viên: {result.maSo}</p>
-          <p>Họ Tên: {result.hoTen}</p>
-          <p>Quê Quán: {result.quequan}</p>
+          {/* <h3>Kết quả:</h3>
+          <p>Mã Thành Viên: {result.id}</p>
+          <p>Họ Tên: {result.name}</p>
+          <p>Quê Quán: {result.address}</p> */}
+          <table className='body-table'>
+            <tr>
+              <td>Mã thành viên</td>
+              <td>Họ tên</td>
+              <td>Quê quán</td>
+            </tr>
+
+            <tr>
+              <td>{result.id}</td>
+              <td>{result.name}</td>
+            </tr>
+          </table>
         </div>
       )}
     </div>
