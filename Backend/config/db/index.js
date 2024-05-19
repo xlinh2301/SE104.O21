@@ -1,12 +1,11 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
 
-async function connect() {
-  try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/caygiapha")
-    console.log('Connect succesfully!!')
-  } catch (error) {
-    console.log('Connect failure!!')
-  }
-}
+const dbConfig = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT
+};
 
-module.exports = { connect }
+module.exports = dbConfig;

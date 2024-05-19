@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import "./login.scss"
+import "./login.scss";
 
 export const Login = () => {
 
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const navigate = useNavigate()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.post("http://localhost:3001/login", { email, password })
-      .then(result => {
-        console.log(result)
-        if (result.data === "Success") {
-          navigate("/main")
-        } else {
-          navigate("/register")
-          alert("You are not registered to this service")
-
-        }
-
-      })
-      .catch(err => console.log(err))
-  }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/login", { username, password });
+      console.log("OK");
+      console.log(response);
+      if (response.data.message === "Success") {
+        navigate("/main");
+      } else {
+        alert("You are not registered to this service");
+        navigate("/register");
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+    }
+  };
 
   return (
     <div className="login-main">
@@ -35,20 +34,19 @@ export const Login = () => {
         <form className="login-form" onSubmit={handleSubmit}>
 
           <div className="login-input">
-            <label htmlFor="email">
+            <label htmlFor="username">
               <strong>Tên đăng nhập</strong>
             </label>
             <input type="text"
               placeholder=''
               autoComplete='off'
-              name='email'
+              name='username'
               className='login-input-text'
-              onChange={(e) => setEmail(e.target.value)}
-
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="login-input">
-            <label htmlFor="email">
+            <label htmlFor="username">
               <strong>Mật khẩu</strong>
             </label>
             <input type="password"
@@ -56,7 +54,6 @@ export const Login = () => {
               name='password'
               className='login-input-text'
               onChange={(e) => setPassword(e.target.value)}
-
             />
           </div>
           <button type="submit" className="login-button">
@@ -72,4 +69,4 @@ export const Login = () => {
       </div>
     </div>
   );
-}
+};

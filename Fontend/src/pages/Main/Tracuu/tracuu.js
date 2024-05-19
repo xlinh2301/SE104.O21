@@ -34,9 +34,9 @@ export const Tracuu = () => {
       {result && (
         <div>
           <h3>Kết quả:</h3>
-          <p>Mã Thành Viên: {result.mathanhvien}</p>
+          <p>Mã Thành Viên: {result.maSo}</p>
           <p>Họ Tên: {result.hoten}</p>
-          <p>Quê Quán: {result.quequan}</p>
+          <p>Quê Quán: {result.diachi}</p>
         </div>
       )}
     </div>

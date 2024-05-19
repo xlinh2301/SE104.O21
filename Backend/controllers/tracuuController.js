@@ -1,10 +1,11 @@
-const TracuuSchema = require("../model/tracuu")
+const ThanhvienSchema = require("../model/thanhvien")
 
 class tracuuController {
   async tracuu(req, res) {
-    const { hoTen, maSo } = req.query;
+    const { hoTen, maThanhVien } = req.body;
     try {
-      const user = await TracuuSchema.findOne({ hoTen: hoTen, maThanhVien: maSo });
+      const user = await ThanhvienSchema.findOne({ hoTen: hoTen, maThanhVien: maThanhVien });
+      console.log(user)
       if (user) {
         res.json(user);
       } else {

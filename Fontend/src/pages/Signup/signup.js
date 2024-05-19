@@ -1,27 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import "./signup.scss"
+import "./signup.scss";
 
 export const Signup = () => {
-
-  const [name, setName] = useState()
-  const [account, setAccount] = useState()
-  const [password, setPassword] = useState()
-  const [email, setEmail] = useState()
-  const navigate = useNavigate()
+  const [name, setName] = useState('');
+  const [account, setAccount] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    if (!name || !account || !password || !email) {
+      console.log("All fields are required.");
+      return;
+    }
+
     axios.post("http://localhost:3001/register", { name, account, password, email })
       .then(result => {
-        console.log(result)
-        navigate("/login")
+        console.log(result);
+        navigate("/login");
       })
-      .catch(err => console.log(err))
-  }
-
+      .catch(err => console.log(err));
+  };
 
   return (
     <div className="signup">
@@ -33,37 +37,40 @@ export const Signup = () => {
         <div className="signup-body-box">
           <form className="signup-body-box-1" onSubmit={handleSubmit}>
             <div className="signup-body-box-child">
-              <label htmlFor="email">
+              <label htmlFor="name">
                 <p className='signup-body-box-child-text'>Họ tên</p>
               </label>
               <input type="text"
                 placeholder=''
                 autoComplete='off'
-                name='email'
+                name='name'
                 className='signup-body-box-input'
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="signup-body-box-child">
-              <label htmlFor="text">
+              <label htmlFor="account">
                 <p className='signup-body-box-child-text'>Tài khoản đăng nhập</p>
               </label>
               <input type="text"
                 placeholder=''
                 autoComplete='off'
-                name='email'
+                name='account'
                 className='signup-body-box-input'
+                value={account}
                 onChange={(e) => setAccount(e.target.value)}
               />
             </div>
             <div className="signup-body-box-child">
-              <label htmlFor="email">
+              <label htmlFor="password">
                 <p className='signup-body-box-child-text'>Mật khẩu</p>
               </label>
               <input type="password"
                 placeholder=''
                 name='password'
                 className='signup-body-box-input'
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -75,6 +82,7 @@ export const Signup = () => {
                 placeholder=''
                 name='email'
                 className='signup-body-box-input'
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -92,4 +100,4 @@ export const Signup = () => {
       </div>
     </div>
   );
-}
+};

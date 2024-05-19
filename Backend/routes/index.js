@@ -8,7 +8,7 @@ const tracuuRoute = require("./Tracuu")
 function route(app) {
   app.use('/login', loginRoute)
   app.use('/register', signupRoute)
-  app.use('/tracuu', tracuuRoute)
+  // app.use('/tracuu', tracuuRoute)
   app.use('/', homeRoute)
 }
 
