@@ -1,20 +1,25 @@
-const ThanhvienSchema = require("../model/thanhvien")
+const TracuuController = {
+  async index(req, res) {
+    const { hoTen, maSo } = req.body;
 
-class tracuuController {
-  async tracuu(req, res) {
-    const { hoTen, maThanhVien } = req.body;
+    console.log(req.body)
+
     try {
-      const user = await ThanhvienSchema.findOne({ hoTen: hoTen, maThanhVien: maThanhVien });
-      console.log(user)
-      if (user) {
-        res.json(user);
+      const pool = req.app.get('db');
+
+      const [rows] = await pool.query(`SELECT * FROM thanhvien WHERE HoVaTen = ? AND MaThanhVien = ?`, [hoTen, maSo]);
+      console.log([rows])
+
+      if (rows.length > 0) {
+        res.status(200).json(rows[0]);
       } else {
-        res.status(404).send('User not found');
+        res.status(404).json({ message: 'Không tìm thấy thành viên' });
       }
     } catch (error) {
-      res.status(500).send(error.message);
+      console.error('Lỗi:', error);
+      res.status(500).json({ message: 'Đã xảy ra lỗi khi tra cứu thành viên' });
     }
   }
-}
+};
 
-module.exports = new tracuuController;
+module.exports = TracuuController;

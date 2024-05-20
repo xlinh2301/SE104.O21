@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .signup-header {
@@ -11,42 +12,32 @@
   width: 100%;
   flex-direction: row;
   height: 54px;
+  background-color: rgba(143, 241, 150, 0.6);
+  padding-left: 50px;
 
   .signup-nav {
     display: flex;
-    position: fixed;
-    top: 0;
     margin: 0;
-    width: 100%;
-    height: 54px;
-    background-color: rgba(143, 241, 150, 0.6);
-    padding-left: 50px;
 
-
-    &-item {
+    .signup-nav-item {
       display: flex;
       align-items: center;
-      text-align: center;
-      padding: 0 50px;
+      padding: 0 20px;
       height: 100%;
-      color: #000;
 
-      &-text {
+      .signup-nav-item-text {
         color: #000;
-        text-align: center;
         font-family: "Times New Roman";
         font-size: 18px;
-        font-style: normal;
         font-weight: 700;
-        line-height: normal;
         text-decoration: none;
+
+        &.active,
+        &:hover {
+          color: white;
+          background-color: #c3f6c8;
+        }
       }
-    }
-
-
-    &-item:hover {
-      color: white;
-      background-color: #c3f6c8;
     }
   }
 
@@ -56,24 +47,20 @@
     align-items: center;
     width: 140px;
     height: 40px;
-    position: absolute;
-    right: 0;
     margin-right: 15px;
     border-radius: 19px;
     background: #0085FF;
 
-    &-text {
+    .signup-nav-login-text {
       color: #FFF;
       font-family: "Times New Roman";
       font-size: 20px;
-      font-style: normal;
       font-weight: 700;
-      line-height: normal;
       text-decoration: none;
-    }
-  }
 
-  .signup-nav-login:hover {
-    background-color: #0084ff59;
+      &:hover {
+        background-color: #0084ff59;
+      }
+    }
   }
 }

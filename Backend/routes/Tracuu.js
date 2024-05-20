@@ -4,6 +4,6 @@ const router = express.Router();
 
 const TracuuController = require("../controllers/tracuuController")
 
-router.post('/', TracuuController.tracuu)
+router.use('/', TracuuController.index)
 
 module.exports = router;

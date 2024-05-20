@@ -2,16 +2,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  /* Đảm bảo wrapper có chiều cao ít nhất là 100% của viewport */
 }
 
 .container {
-  width: var(--default-layout-width);
-  max-width: 100%;
-  padding: 0 var(--default-layout-horizontal-spacer);
-  margin-top: var(--default-layout-header-height);
   display: flex;
+  width: 100%;
+  margin-top: 54px;
+
+}
+
+html,
+body,
+#root,
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .content {
   flex: 1;
+  overflow-y: auto;
+  /* Cho phép cuộn nếu nội dung vượt quá kích thước của container */
+  margin-top: 54px;
+  margin-left: 250px;
+  height: 100vh;
+  /* Giữ khoảng cách với header */
+}
+
+.sidebar {
+  width: 250px;
+  // background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 1px solid #ccc;
+}
+
+.header {
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

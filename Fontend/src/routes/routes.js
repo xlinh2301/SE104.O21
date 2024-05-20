@@ -10,6 +10,7 @@ import { Home } from '~/pages/Home/home'
 import { Caygiapha } from '~/pages/Main/Caygiapha/caygiapha'
 import { Ghinhanketthuc } from '~/pages/Main/Ghinhanketthuc/ghinhanketthuc'
 import { Tracuu } from '~/pages/Main/Tracuu/tracuu'
+import { Themthanhvien } from '~/pages/Main/Themthanhvien/themthanhvien'
 
 
 const publicRoutes = [
@@ -20,6 +21,7 @@ const publicRoutes = [
   { path: config.routes.main, component: Caygiapha },
   { path: config.routes.ghinhanketthuc, component: Ghinhanketthuc },
   { path: config.routes.tracuu, component: Tracuu },
+  { path: config.routes.themthanhvien, component: Themthanhvien },
 ]
 
 const privateRoutes = [

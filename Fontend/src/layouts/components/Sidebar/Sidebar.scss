@@ -23,6 +23,8 @@
       height: 50px;
       color: black;
       padding-left: 20px;
+      text-decoration: none;
+      /* Added text decoration none */
     }
 
     &__span:hover {
@@ -32,13 +34,5 @@
     .active {
       background-color: white;
     }
-
-    // &__span:first-child {
-    //   margin-top: 3px;
-    // }
-
-    // &__span:last-child {
-    //   margin-bottom: 3px;
-    // }
   }
 }
