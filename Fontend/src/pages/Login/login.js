@@ -17,6 +17,7 @@ export const Login = () => {
       console.log("OK");
       console.log(response);
       if (response.data.message === "Success") {
+        localStorage.setItem('token', response.data.token);
         navigate("/main");
       } else {
         alert("You are not registered to this service");

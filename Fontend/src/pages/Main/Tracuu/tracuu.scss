@@ -1,46 +1,93 @@
 // tracuu.scss
 
 .tracuu-container {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 66px;
+}
+
+.body-form {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-.fade {
-  transition: opacity 0.5s ease;
+.s {
+  flex: 1;
+  position: relative;
 }
 
-.result-table {
+.fa {
+  margin-top: 4px;
+}
+
+.sb {
   width: 100%;
-  border-collapse: collapse;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.result-table th,
-.result-table td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-.result-table th {
-  background-color: #f2f2f2;
-}
-
-.result-table tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-button {
-  padding: 10px 20px;
+.sbtn {
   background-color: #007bff;
-  color: white;
   border: none;
-  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.sbtn:hover {
   background-color: #0056b3;
+}
+
+.top {
+  margin-left: 10px;
+}
+
+.btn-search {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
+  background-color: #0056b3;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+.results h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.results ul {
+  list-style: none;
+  padding: 0;
+}
+
+.results li {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results li strong {
+  font-weight: bold;
 }

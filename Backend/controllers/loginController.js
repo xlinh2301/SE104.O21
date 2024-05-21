@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { promisify } = require('util');
+
 class LoginController {
   async index(req, res) {
     try {
@@ -12,23 +16,31 @@ class LoginController {
       }
 
       // Thực hiện truy vấn để tìm kiếm người dùng với username tương ứng
-      const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username || null]);
+      const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
       console.log([rows])
 
-      // Nếu tìm thấy người dùng
-      if (rows.length > 0) {
-        const user = rows[0];
-        console.log(user);
-        // So sánh mật khẩu
-        if (user.password === password) {
-          console.log("OK")
-          res.status(200).json({ message: 'Success' });
-        } else {
-          res.json("The password is incorrect");
-        }
-      } else {
-        res.json("No record existed");
+      if (rows.length === 0) {
+        return res.status(400).json("No record existed");
       }
+
+      const user = rows[0];
+      console.log(user.password)
+
+      const passwordIsValid = (password === user.password ? true : false)
+
+      console.log(passwordIsValid)
+
+      if (!passwordIsValid) {
+        return res.status(400).json("The password is incorrect");
+      }
+
+      // Generate JWT token
+      const token = jwt.sign({ id: user.id, username: user.username }, '123', {
+        expiresIn: '1h', // Token expires in 1 hour
+      });
+
+      // Respond with token
+      res.status(200).json({ message: 'Success', token });
     } catch (error) {
       console.error(error);
       res.status(500).json("Server error");

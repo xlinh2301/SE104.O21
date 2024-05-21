@@ -6,16 +6,15 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export const Themthanhvien = () => {
   const [formData, setFormData] = useState({
-    mathanhvien: "",
-    hoten: "",
-    gioitinh: "",
+    lathanhviencu: "0",
+    loaiquanhe: "Con", // Default value
+    ngayphatsinh: new Date(),
+    hovaten: "",
+    gioitinh: "Nam",
     ngaygiosinh: new Date(),
-    maquequan: "",
-    manghenghiep: "",
-    diachi: "",
-    mathanhviencu: "",
-    maloaiquanhe: "",
-    ngayphatsinh: new Date()
+    quequan: "Bình Phước",
+    nghenghiep: "Lập trình viên",
+    diachi: ""
   });
 
   const handleChange = (e) => {
@@ -45,11 +44,14 @@ export const Themthanhvien = () => {
       const formattedNgayGioSinh = formatDate(formData.ngaygiosinh);
       const formattedNgayPhatSinh = formatDate(formData.ngayphatsinh);
 
+      const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3001/themthanhvien", {
         ...formData,
         ngaygiosinh: formattedNgayGioSinh,
-        ngayphatsinh: formattedNgayPhatSinh
-      });
+        ngayphatsinh: formattedNgayPhatSinh,
+      },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
       console.log(response.data);
       alert("Đã thêm mới 1 thành viên!!");
@@ -58,60 +60,27 @@ export const Themthanhvien = () => {
     }
   };
 
-
   return (
     <div className="member-form-container">
       <h2>Thêm thành viên mới</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="mathanhvien">Mã thành viên</label>
-            <input type="text" name="mathanhvien" value={formData.mathanhvien} onChange={handleChange} />
+            <label htmlFor="lathanhviencu">Thành viên cũ</label>
+            <select name="lathanhviencu" className="lathanhviencu" value={formData.lathanhviencu} onChange={handleChange}>
+              <option value="0">Không là thành viên cũ</option>
+              <option value="1">Là thành viên cũ</option>
+            </select>
           </div>
           <div className="form-group">
-            <label htmlFor="hoten">Họ và tên</label>
-            <input type="text" name="hoten" value={formData.hoten} onChange={handleChange} />
+            <label htmlFor="loaiquanhe">Loại quan hệ</label>
+            <select name="loaiquanhe" className="loaiquanhe" value={formData.loaiquanhe} onChange={handleChange}>
+              <option value="Con">Con</option>
+              <option value="Cha/Mẹ">Cha/Mẹ</option>
+            </select>
           </div>
         </div>
         <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="gioitinh">Giới tính</label>
-            <input type="text" name="gioitinh" value={formData.gioitinh} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="ngaygiosinh">Ngày giờ sinh</label>
-            <DatePicker
-              selected={formData.ngaygiosinh}
-              onChange={(date) => handleDateChange("ngaygiosinh", date)}
-              showTimeSelect={false} // Disable time selection
-            />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="maquequan">Mã quê quán</label>
-            <input type="text" name="maquequan" value={formData.maquequan} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="manghenghiep">Mã nghề nghiệp</label>
-            <input type="text" name="manghenghiep" value={formData.manghenghiep} onChange={handleChange} />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="diachi">Địa chỉ</label>
-            <input type="text" name="diachi" value={formData.diachi} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="mathanhviencu">Mã thành viên cũ</label>
-            <input type="text" name="mathanhviencu" value={formData.mathanhviencu} onChange={handleChange} />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="maloaiquanhe">Mã loại quan hệ</label>
-            <input type="text" name="maloaiquanhe" value={formData.maloaiquanhe} onChange={handleChange} />
-          </div>
           <div className="form-group">
             <label htmlFor="ngayphatsinh">Ngày phát sinh</label>
             <DatePicker
@@ -120,8 +89,67 @@ export const Themthanhvien = () => {
               showTimeSelect={false} // Disable time selection
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="hovaten">Họ và tên</label>
+            <input type="text" name="hovaten" value={formData.hovaten} onChange={handleChange} />
+          </div>
         </div>
-        <button type="submit">Thêm thành viên</button>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="gioitinh">Giới tính</label>
+            <select name="gioitinh" className="gioitinh" value={formData.gioitinh} onChange={handleChange}>
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="ngaygiosinh">Ngày giờ sinh</label>
+            <DatePicker
+              selected={formData.ngaygiosinh}
+              onChange={(date) => handleDateChange("ngaygiosinh", date)}
+              showTimeSelect
+              dateFormat="Pp" // Format with time
+            />
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="quequan">Quê quán</label>
+            <select name="quequan" className="quequan" value={formData.quequan} onChange={handleChange}>
+              <option value="Bình Phước">Bình Phước</option>
+              <option value="Trà Vinh">Trà Vinh</option>
+              <option value="Hà Tĩnh">Hà Tĩnh</option>
+              <option value="Lâm Đồng">Lâm Đồng</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="nghenghiep">Nghề nghiệp</label>
+            <select name="nghenghiep" className="nghenghiep" value={formData.nghenghiep} onChange={handleChange}>
+              <option value="Lập trình viên">Lập trình viên</option>
+              <option value="Kỹ sư xây dựng">Kỹ sư xây dựng</option>
+              <option value="Giáo viên">Giáo viên</option>
+              <option value="Bác sĩ">Bác sĩ</option>
+              <option value="Nhà thiết kế đồ họa">Nhà thiết kế đồ họa</option>
+              <option value="Nhân viên kinh doanh">Nhân viên kinh doanh</option>
+              <option value="Họa sĩ">Họa sĩ</option>
+              <option value="Nhân viên marketing">Nhân viên marketing</option>
+              <option value="Ca sĩ">Ca sĩ</option>
+              <option value="Nhân viên bán hàng">Nhân viên bán hàng</option>
+              <option value="Kỹ sư ô tô">Kỹ sư ô tô</option>
+              <option value="Nhân viên hành chính">Nhân viên hành chính</option>
+              <option value="Kỹ sư điện">Kỹ sư điện</option>
+              <option value="Diễn viên">Diễn viên</option>
+              <option value="Kỹ sư cơ khí">Kỹ sư cơ khí</option>
+            </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="diachi">Địa chỉ</label>
+            <input type="text" name="diachi" value={formData.diachi} onChange={handleChange} />
+          </div>
+        </div>
+        <button type="submit" className="button-addmember">Thêm thành viên</button>
       </form>
     </div>
   );
