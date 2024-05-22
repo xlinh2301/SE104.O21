@@ -32,7 +32,10 @@
         font-weight: 700;
         text-decoration: none;
 
-        &.active,
+        &.active {}
+
+        ;
+
         &:hover {
           color: white;
           background-color: #c3f6c8;
