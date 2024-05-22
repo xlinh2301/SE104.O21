@@ -53,7 +53,7 @@ export const Tracuu = () => {
                   <strong>Họ và Tên:</strong> {result.HoVaTen} <br />
                   <strong>Ngày sinh:</strong> {result.NgaySinh} <br />
                   <strong>Đời:</strong> {result.Doi} <br />
-                  <strong>Cha/Mẹ:</strong> {result.ChaHoacMe} <br />
+                  <strong>Cha/Mẹ:</strong> {result.TenChaHoacMe} <br />
                 </li>
               ))}
             </ul>
