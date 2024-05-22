@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export const Themthanhvien = () => {
   const [formData, setFormData] = useState({
-    lathanhviencu: "0",
+    tenthanhviencu: "", // New field
     loaiquanhe: "Con", // Default value
     ngayphatsinh: new Date(),
     hovaten: "",
@@ -47,6 +47,7 @@ export const Themthanhvien = () => {
       const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3001/themthanhvien", {
         ...formData,
+        tenthanhviencu: formData.loaiquanhe === "Gốc" ? null : formData.tenthanhviencu, // Set tenthanhviencu to null if loaiquanhe is "Gốc"
         ngaygiosinh: formattedNgayGioSinh,
         ngayphatsinh: formattedNgayPhatSinh,
       },
@@ -57,6 +58,7 @@ export const Themthanhvien = () => {
       alert("Đã thêm mới 1 thành viên!!");
     } catch (error) {
       console.error("Error:", error);
+      alert("Đã xảy ra lỗi khi thêm thành viên");
     }
   };
 
@@ -66,17 +68,15 @@ export const Themthanhvien = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="lathanhviencu">Thành viên cũ</label>
-            <select name="lathanhviencu" className="lathanhviencu" value={formData.lathanhviencu} onChange={handleChange}>
-              <option value="0">Không là thành viên cũ</option>
-              <option value="1">Là thành viên cũ</option>
-            </select>
+            <label htmlFor="tenthanhviencu">Tên thành viên cũ</label>
+            <input type="text" name="tenthanhviencu" value={formData.tenthanhviencu} onChange={handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor="loaiquanhe">Loại quan hệ</label>
             <select name="loaiquanhe" className="loaiquanhe" value={formData.loaiquanhe} onChange={handleChange}>
               <option value="Con">Con</option>
-              <option value="Cha/Mẹ">Cha/Mẹ</option>
+              <option value="Vợ/Chồng">Vợ/Chồng</option>
+              <option value="Gốc">Gốc</option> {/* Add the new option "Gốc" */}
             </select>
           </div>
         </div>
@@ -86,7 +86,7 @@ export const Themthanhvien = () => {
             <DatePicker
               selected={formData.ngayphatsinh}
               onChange={(date) => handleDateChange("ngayphatsinh", date)}
-              showTimeSelect={false} // Disable time selection
+              dateFormat="yyyy-MM-dd" // Format without time
             />
           </div>
           <div className="form-group">
@@ -150,7 +150,8 @@ export const Themthanhvien = () => {
           </div>
         </div>
         <button type="submit" className="button-addmember">Thêm thành viên</button>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 };
+
