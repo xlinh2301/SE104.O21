@@ -1,0 +1,15 @@
+.container-headerafterlogin {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .content-headerafterlogin {
+    height: 100vh;
+    margin-top: 54px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

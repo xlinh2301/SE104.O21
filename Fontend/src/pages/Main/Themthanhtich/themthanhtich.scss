@@ -1,8 +1,6 @@
 .member-form-container {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  margin: auto;
   /* Đưa phần tử vào giữa trang */
   padding: 20px;
   border: 1px solid #ccc;
@@ -10,7 +8,6 @@
   background-color: #f9f9f9;
   align-self: center;
   /* Đưa phần tử vào giữa theo chiều dọc */
-  margin-top: 30px;
 }
 
 
