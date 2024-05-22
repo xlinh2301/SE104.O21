@@ -8,6 +8,7 @@ const routes = {
   ghinhanketthuc: '/ghinhanketthuc',
   tracuu: '/tracuu',
   themthanhvien: '/themthanhvien',
+  themthanhtich: '/themthanhtich',
 };
 
 export default routes;
