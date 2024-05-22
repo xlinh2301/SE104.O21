@@ -1,7 +1,7 @@
 import config from '~/config';
 
 // Layouts
-import { HeaderOnly } from '~/layouts';
+import { HeaderOnly, HeaderAfterLogin } from '~/layouts';
 
 // Pages
 import { Signup } from '~/pages/Signup/signup'
@@ -11,6 +11,7 @@ import { Caygiapha } from '~/pages/Main/Caygiapha/caygiapha'
 import { Ghinhanketthuc } from '~/pages/Main/Ghinhanketthuc/ghinhanketthuc'
 import { Tracuu } from '~/pages/Main/Tracuu/tracuu'
 import { Themthanhvien } from '~/pages/Main/Themthanhvien/themthanhvien'
+import { Themthanhtich } from '~/pages/Main/Themthanhtich/themthanhtich'
 
 
 const publicRoutes = [
@@ -18,10 +19,11 @@ const publicRoutes = [
   { path: config.routes.login, component: Login, layout: null },
   { path: config.routes.signup, component: Signup, layout: HeaderOnly },
   // { path: config.routes.main, component: Main },
-  { path: config.routes.main, component: Caygiapha },
-  { path: config.routes.ghinhanketthuc, component: Ghinhanketthuc },
-  { path: config.routes.tracuu, component: Tracuu },
-  { path: config.routes.themthanhvien, component: Themthanhvien },
+  { path: config.routes.main, component: Caygiapha, layout: HeaderAfterLogin },
+  { path: config.routes.ghinhanketthuc, component: Ghinhanketthuc, layout: HeaderAfterLogin },
+  { path: config.routes.tracuu, component: Tracuu, layout: HeaderAfterLogin },
+  { path: config.routes.themthanhvien, component: Themthanhvien, layout: HeaderAfterLogin },
+  { path: config.routes.themthanhtich, component: Themthanhtich, layout: HeaderAfterLogin }
 ]
 
 const privateRoutes = [
