@@ -9,8 +9,7 @@ export const Themthanhtich = () => {
     hoten: "",
     loaithanhtich: "Giải nhất quốc gia",
     tenthanhtich: "",
-    ngaybatdau: new Date(),
-    ngayketthuc: new Date(),
+    ngayphatsinh: new Date(),
   });
 
   const handleChange = (e) => {
@@ -32,14 +31,12 @@ export const Themthanhtich = () => {
     e.preventDefault();
     try {
       // Format datetime values before sending to the database
-      const formattedNgaybatdau = formatDate(formData.ngaybatdau);
-      const formattedNgayketthuc = formatDate(formData.ngayketthuc);
+      const formattedNgayphatsinh = formatDate(formData.ngayphatsinh);
 
       const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3001/themthanhtich", {
         ...formData,
-        ngaybatdau: formattedNgaybatdau,
-        ngayketthuc: formattedNgayketthuc,
+        ngayphatsinh: formattedNgayphatsinh,
       },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -52,7 +49,8 @@ export const Themthanhtich = () => {
   };
 
   const formatDate = (date) => {
-    return date.getFullYear(); // Chỉ lấy năm
+    const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
+    return formattedDate;
   };
 
   return (
@@ -86,23 +84,12 @@ export const Themthanhtich = () => {
             <input type="text" name="tenthanhtich" value={formData.tenthanhtich} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="ngaybatdau">Từ năm</label>
+            <label htmlFor="ngayphatsinh">Ngày phát sinh</label>
             <DatePicker
-              selected={formData.ngaybatdau}
-              onChange={(date) => handleDateChange("ngaybatdau", date)}
+              selected={formData.ngayphatsinh}
+              onChange={(date) => handleDateChange("ngayphatsinh", date)}
               showTimeSelect={false}
-              dateFormat="yyyy" // Chỉ định dạng năm
-              showYearPicker // Hiển thị chỉ chọn năm
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="ngayketthuc">Đến năm</label>
-            <DatePicker
-              selected={formData.ngayketthuc}
-              onChange={(date) => handleDateChange("ngayketthuc", date)}
-              showTimeSelect={false}
-              dateFormat="yyyy" // Chỉ định dạng năm
-              showYearPicker // Hiển thị chỉ chọn năm
+              dateFormat="yyyy-MM-dd"
             />
           </div>
         </div>
