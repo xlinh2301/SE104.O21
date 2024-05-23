@@ -1,27 +1,46 @@
 const ThemthanhtichController = {
   async index(req, res) {
-    const { hoten, tenThanhTich } = req.body;
-    const ngayphatsinh = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const { hoten, loaithanhtich, tenthanhtich, ngaybatdau, ngayketthuc } = req.body;
 
     console.log(req.body);
-    console.log(hoten);
-    console.log(tenThanhTich);
-
 
     try {
       const pool = req.app.get('db');
 
-      const [rows] = await pool.query(`SELECT MaLoaiThanhTich FROM loaithanhtich WHERE TenLoaiThanhTich = ?`, [tenThanhTich]);
-      console.log([rows])
-      if (rows.length === 0) {
-        res.status(404).json({ message: 'Loại thành tích không tồn tại' });
-        return;
-      }
-      const maLoaiThanhTich = rows[0].MaLoaiThanhTich;
+      // Lấy mã thành viên dựa trên họ và tên
+      let [hoTenRows] = await pool.query(`SELECT MaThanhVien FROM thanhvien WHERE HoVaTen = ?`, [hoten]);
+      let maThanhVien = hoTenRows[0]?.MaThanhVien;
 
-      // Sau đó, thêm bản ghi mới vào bảng thanhtich
-      const query = `INSERT INTO thanhtich (HoVaTen, MaLoaiThanhTich, NgayPhatSinh) VALUES (?, ?, ?)`;
-      await pool.query(query, [hoten, maLoaiThanhTich, ngayphatsinh]);
+      // Lấy mã loại thành tích dựa trên tên loại thành tích
+      let [loaiThanhTichRows] = await pool.query(`SELECT MaLoaiThanhTich FROM loaithanhtich WHERE TenLoaiThanhTich = ?`, [loaithanhtich]);
+      let maLoaiThanhTich = loaiThanhTichRows[0]?.MaLoaiThanhTich;
+
+      // Kiểm tra nếu không tìm thấy thành viên hoặc loại thành tích
+      if (!maThanhVien || !maLoaiThanhTich) {
+        throw new Error('Không tìm thấy thành viên hoặc loại thành tích');
+      }
+
+      // Kiểm tra nếu đã có bản ghi trong ct_thanhtich
+      let [ctThanhTichRows] = await pool.query(`SELECT * FROM ct_thanhtich WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, maThanhVien]);
+      let soLuong = ctThanhTichRows[0]?.SoLuong;
+      let maCTThanhTich;
+
+      if (soLuong != null) {
+        // Nếu đã có bản ghi, cập nhật số lượng
+        await pool.query(`UPDATE ct_thanhtich SET SoLuong = SoLuong + 1 WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, maThanhVien]);
+        maCTThanhTich = ctThanhTichRows[0].MaCTThanhTich;
+      } else {
+        // Nếu chưa có bản ghi, thêm mới
+        const [insertCtThanhTichResult] = await pool.query(`INSERT INTO ct_thanhtich (MaLoaiThanhTich, SoLuong, MaThanhVien) VALUES (?, ?, ?)`, [maLoaiThanhTich, 1, maThanhVien]);
+        maCTThanhTich = insertCtThanhTichResult.insertId;
+      }
+
+      // Thêm vào bảng thanhtich và lấy lại MaThanhTich
+      const [insertThanhTichResult] = await pool.query(`INSERT INTO thanhtich (TenThanhTich, MaLoaiThanhTich) VALUES (?, ?)`, [tenthanhtich, maLoaiThanhTich]);
+      let maThanhTich = insertThanhTichResult.insertId;
+
+      // Thêm khoảng thời gian thành tích vào bảng thanhtichctv
+      await pool.query(`INSERT INTO thanhtichctv (TuNam, DenNam, MaThanhTich) VALUES (?, ?, ?)`, [ngaybatdau, ngayketthuc, maCTThanhTich]);
 
       res.status(200).json({ message: 'Thêm thành tích thành công' });
     } catch (error) {
