@@ -1,4 +1,4 @@
-.search-form-container {
+.member-form-container {
   display: flex;
   flex-direction: column;
   /* Đưa phần tử vào giữa trang */
@@ -8,10 +8,18 @@
   background-color: #f9f9f9;
   align-self: center;
   /* Đưa phần tử vào giữa theo chiều dọc */
+  margin-top: 10px;
 }
 
+.thaydoithongtin-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  align-self: center;
+}
 
-.search-form-container h2 {
+.member-form-container h2 {
   margin-bottom: 20px;
   text-align: center;
 }
@@ -53,7 +61,10 @@
 }
 
 .loaithanhtich,
-.diadiemmaitang {
+.nguyennhanmat,
+.loaiquanhemoi,
+.quequanmoi,
+.nghenghiepmoi {
   width: 100%;
   height: 41px;
 }
