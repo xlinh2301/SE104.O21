@@ -5,7 +5,6 @@
 }
 
 .home_body {
-  // background-color: aqua;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +29,7 @@
       font-weight: 400;
       line-height: normal;
       margin: 0;
+
     }
 
     &-box {

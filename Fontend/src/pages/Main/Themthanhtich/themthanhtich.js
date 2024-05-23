@@ -8,8 +8,8 @@ export const Themthanhtich = () => {
   const [formData, setFormData] = useState({
     hoten: "",
     loaithanhtich: "Giải nhất quốc gia",
-    ngaybatdau: new Date(),
-    ngayketthuc: new Date(),
+    tenthanhtich: "",
+    ngayphatsinh: new Date(),
   });
 
   const handleChange = (e) => {
@@ -27,23 +27,16 @@ export const Themthanhtich = () => {
     }));
   };
 
-  const formatDate = (date) => {
-    const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
-    return formattedDate;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Format datetime values before sending to the database
-      const formattedNgayBatDau = formatDate(formData.ngaybatdau);
-      const formattedNgayKetThuc = formatDate(formData.ngayketthuc);
+      const formattedNgayphatsinh = formatDate(formData.ngayphatsinh);
 
       const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3001/themthanhtich", {
         ...formData,
-        ngaybatdau: formattedNgayBatDau,
-        ngayketthuc: formattedNgayKetThuc,
+        ngayphatsinh: formattedNgayphatsinh,
       },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -53,6 +46,11 @@ export const Themthanhtich = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
+    return formattedDate;
   };
 
   return (
@@ -82,21 +80,16 @@ export const Themthanhtich = () => {
         </div>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="ngaybatdau">Ngày bắt đầu</label>
-            <DatePicker
-              selected={formData.ngaybatdau}
-              onChange={(date) => handleDateChange("ngaybatdau", date)}
-              showTimeSelect={false}
-              dateFormat="Pp" // Format with time
-            />
+            <label htmlFor="tenthanhtich">Tên thành tích</label>
+            <input type="text" name="tenthanhtich" value={formData.tenthanhtich} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="ngayketthuc">Ngày kết thúc</label>
+            <label htmlFor="ngayphatsinh">Ngày phát sinh</label>
             <DatePicker
-              selected={formData.ngayketthuc}
-              onChange={(date) => handleDateChange("ngayketthuc", date)}
+              selected={formData.ngayphatsinh}
+              onChange={(date) => handleDateChange("ngayphatsinh", date)}
               showTimeSelect={false}
-              dateFormat="Pp" // Format with time
+              dateFormat="yyyy-MM-dd"
             />
           </div>
         </div>
