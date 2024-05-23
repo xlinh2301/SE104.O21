@@ -1,6 +1,6 @@
 const ThemthanhtichController = {
   async index(req, res) {
-    const { hoten, loaithanhtich, tenthanhtich, ngaybatdau, ngayketthuc } = req.body;
+    const { hoten, loaithanhtich, tenthanhtich, ngayphatsinh } = req.body;
 
     console.log(req.body);
 
@@ -36,11 +36,7 @@ const ThemthanhtichController = {
       }
 
       // Thêm vào bảng thanhtich và lấy lại MaThanhTich
-      const [insertThanhTichResult] = await pool.query(`INSERT INTO thanhtich (TenThanhTich, MaLoaiThanhTich) VALUES (?, ?)`, [tenthanhtich, maLoaiThanhTich]);
-      let maThanhTich = insertThanhTichResult.insertId;
-
-      // Thêm khoảng thời gian thành tích vào bảng thanhtichctv
-      await pool.query(`INSERT INTO thanhtichctv (TuNam, DenNam, MaThanhTich) VALUES (?, ?, ?)`, [ngaybatdau, ngayketthuc, maCTThanhTich]);
+      await pool.query(`INSERT INTO thanhtich (TenThanhTich, MaLoaiThanhTich, NgayPhatSinh) VALUES (?, ?, ?)`, [tenthanhtich, maLoaiThanhTich, ngayphatsinh]);
 
       res.status(200).json({ message: 'Thêm thành tích thành công' });
     } catch (error) {
