@@ -1,3 +1,6 @@
+// controllers/themthanhvienController.js
+const calculateDoi = require('../utils/calculateDoi');
+
 const ThemthanhvienController = {
   async index(req, res) {
     const { tenthanhviencu, ngayphatsinh, gioitinh, quequan, diachi, loaiquanhe, hovaten, ngaygiosinh, nghenghiep } = req.body;
@@ -20,73 +23,20 @@ const ThemthanhvienController = {
       console.log("Mã quê quán", maQueQuan);
       console.log("Mã loại quan hệ", maLoaiQuanHe);
 
-      // Nếu loại quan hệ là Con hoặc Gốc thì cần kiểm tra xem có cha hoặc mẹ không
-      let doiChaMe = 0;
-      let mathanhviencu = null;
-      let tenChaHoacMe = null;
-      let doiChaHoacMe = 0;
-
-      if (loaiquanhe === 'Con') {
-        if (tenthanhviencu) {
-          let [mathanhviencuRows] = await pool.query(`SELECT MaThanhVien, Doi FROM danhsachthanhvien WHERE HoVaTen = ?`, [tenthanhviencu]);
-          if (mathanhviencuRows.length > 0) {
-            mathanhviencu = mathanhviencuRows[0]?.MaThanhVien;
-            doiChaMe = mathanhviencuRows[0]?.Doi;
-            tenChaHoacMe = tenthanhviencu;
-          } else {
-            throw new Error('Không tìm thấy cha hoặc mẹ');
-          }
-        }
-      } else if (loaiquanhe === 'Vợ/Chồng') {
-        if (tenthanhviencu) {
-          let [mathanhviencuRows] = await pool.query(`SELECT MaChaHoacMe, Doi FROM danhsachthanhvien WHERE HoVaTen = ?`, [tenthanhviencu]);
-          if (mathanhviencuRows.length > 0) {
-            mathanhviencu = mathanhviencuRows[0]?.MaChaHoacMe;
-            doiChaMe = mathanhviencuRows[0]?.Doi;
-          }
-        }
-      }
-      console.log(mathanhviencu)
-
-      if (loaiquanhe === 'Vợ/Chồng') {
-        if (tenthanhviencu) {
-          // Nếu là vợ/chồng và có thành viên cũ, lấy mã của thành viên cũ và tăng đời lên 1
-          let [mathanhviencuRows] = await pool.query(`SELECT HoVaTen, Doi FROM danhsachthanhvien WHERE MaThanhVien = ?`, [mathanhviencu]);
-          if (mathanhviencuRows.length > 0) {
-            tenChaHoacMe = mathanhviencuRows[0]?.HoVaTen;
-            doiChaHoacMe = mathanhviencuRows[0]?.Doi;
-          }
-          console.log([mathanhviencuRows])
-        }
-      }
+      const { doiThanhVien, maThanhVienCu, tenChaHoacMe } = await calculateDoi(pool, loaiquanhe, tenthanhviencu);
 
       if (!maQueQuan || !maLoaiQuanHe) {
         throw new Error('Không tìm thấy mã quê quán hoặc mã loại quan hệ');
       }
 
-      // Tính giá trị cho cột Doi
-      let doiThanhVien;
-      if (loaiquanhe === 'Con') {
-        doiThanhVien = doiChaMe + 1;
-      } else if (loaiquanhe === 'Vợ/Chồng') {
-        if (tenChaHoacMe) {
-          doiThanhVien = doiChaHoacMe + 1;
-        } else {
-          doiThanhVien = 0;
-        }
-      } else {
-        doiThanhVien = 0;
-      }
-
-      console.log("Đời: ", doiThanhVien)
-      console.log("Tên cha hoặc mẹ: ", tenChaHoacMe)
-      console.log("Đời cha hoặc mẹ: ", doiChaHoacMe)
+      console.log("Đời: ", doiThanhVien);
+      console.log("Tên cha hoặc mẹ: ", tenChaHoacMe);
 
       // Thêm thành viên mới vào bảng thanhvien
       const [thanhVienRows] = await pool.query(
-        `INSERT INTO thanhvien (MaLoaiQuanHe, NgayPhatSinhMoiQuanHe, HoVaTen, GioiTinh, NgayGioSinh, MaQueQuan, MaNgheNghiep, DiaChi, TenThanhVienCu)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [maLoaiQuanHe, ngayphatsinh, hovaten, gioitinh, ngaygiosinh, maQueQuan, maNgheNghiep, diachi, tenthanhviencu]
+        `INSERT INTO thanhvien (MaLoaiQuanHe, NgayPhatSinhMoiQuanHe, HoVaTen, GioiTinh, NgayGioSinh, MaQueQuan, MaNgheNghiep, DiaChi, MaThanhVienCu, TenThanhVienCu)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [maLoaiQuanHe, ngayphatsinh, hovaten, gioitinh, ngaygiosinh, maQueQuan, maNgheNghiep, diachi, maThanhVienCu, tenthanhviencu]
       );
 
       // Lấy ID của thành viên vừa thêm
@@ -96,7 +46,7 @@ const ThemthanhvienController = {
       const [DSThanhVienRows] = await pool.query(
         `INSERT INTO danhsachthanhvien (HoVaTen, NgaySinh, Doi, TenChaHoacMe, MaChaHoacMe, MaThanhVien)
         VALUES (?, ?, ?, ?, ?, ?)`,
-        [hovaten, ngaygiosinh, doiThanhVien, tenChaHoacMe, mathanhviencu, maThanhVienMoi]
+        [hovaten, ngaygiosinh, doiThanhVien, tenChaHoacMe, maThanhVienCu, maThanhVienMoi]
       );
 
       console.log([thanhVienRows, DSThanhVienRows]);
