@@ -22,13 +22,13 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <p className="sidebar__header">Cây gia phả</p>
-      <div className="sidebar__container">
+      <p className="sidebar-header">Bảng điều khiển</p>
+      <div className="sidebar-container">
         {menuItems.map((menuItem, index) => (
           <NavLink
             key={index}
             to={menuItem.url}
-            className={`sidebar__container__span ${activeItem === menuItem.name ? 'active' : ''}`}
+            className={`sidebar-container-span ${activeItem === menuItem.name ? 'active' : ''}`}
             onClick={() => handleClick(menuItem.name)}
           >
             {menuItem.label}

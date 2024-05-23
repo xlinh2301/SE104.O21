@@ -7,6 +7,7 @@
 }
 
 .container {
+
   // display: flex;
   // width: 100%;
   // margin-top: 54px;
@@ -17,8 +18,11 @@ html,
 body,
 #root,
 .container {
+  background-image: url(./z5425244074214_e1839514f9ff8046951b1fb6f81fc6d2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   // width: 100%;
-  // height: 100%;
+  // height: 100%;  
   // margin: 0;
   // padding: 0;
 }

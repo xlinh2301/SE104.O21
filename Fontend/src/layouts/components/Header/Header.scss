@@ -11,7 +11,7 @@
   position: fixed;
   width: 100%;
   flex-direction: row;
-  height: 54px;
+  height: 10%;
   background-color: rgba(143, 241, 150, 0.6);
   padding-left: 50px;
 
@@ -32,7 +32,10 @@
         font-weight: 700;
         text-decoration: none;
 
-        &.active,
+        &.active {}
+
+        ;
+
         &:hover {
           background-color: #c3f6c8;
         }
