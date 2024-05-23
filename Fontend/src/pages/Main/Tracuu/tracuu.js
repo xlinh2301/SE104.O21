@@ -53,19 +53,15 @@ export const Tracuu = () => {
                   <strong>Họ và Tên:</strong> {result.HoVaTen} <br />
                   <strong>Ngày sinh:</strong> {result.NgaySinh} <br />
                   <strong>Đời:</strong> {result.Doi} <br />
-<<<<<<< HEAD
-                  <strong>Cha/Mẹ:</strong> {result.ChaHoacMe} <br />
-=======
                   <strong>Cha/Mẹ:</strong> {result.TenChaHoacMe} <br />
                   <strong>Mã thành viên:</strong> {result.MaThanhVien} <br />
                   <strong>Mã Cha/Mẹ:</strong> {result.MaChaHoacMe} <br />
->>>>>>> efc0853ea0ce48b64d73d6043a7dbf6fda1b1cad
-                </li>
+                </li >
               ))}
-            </ul>
-          </div>
+            </ul >
+          </div >
         )}
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
