@@ -1,0 +1,48 @@
+.lapbaocao-container {
+  padding: 20px;
+}
+
+.filter-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-section input,
+.filter-section button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.report-section {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+.report-section h2 {
+  margin-bottom: 20px;
+}
+
+.report-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report-section th,
+.report-section td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.report-section th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+}
