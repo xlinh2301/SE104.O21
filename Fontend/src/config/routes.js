@@ -1,5 +1,3 @@
-import { ghinhanketthuc } from "~/pages/Main/Ghinhanketthuc/ghinhanketthuc";
-
 const routes = {
   home: '/',
   login: '/login',
@@ -10,6 +8,7 @@ const routes = {
   themthanhvien: '/themthanhvien',
   themthanhtich: '/themthanhtich',
   thaydoithongtin: '/thaydoithongtin',
+  lapbaocao: '/lapbaocao',
 };
 
 export default routes;
