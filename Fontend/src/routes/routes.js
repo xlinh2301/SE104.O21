@@ -13,6 +13,7 @@ import { Tracuu } from '~/pages/Main/Tracuu/tracuu'
 import { Themthanhvien } from '~/pages/Main/Themthanhvien/themthanhvien'
 import { Themthanhtich } from '~/pages/Main/Themthanhtich/themthanhtich'
 import { Thaydoithongtin } from '~/pages/Main/Thaydoithongtin/thaydoithongtin'
+import { Lapbaocao } from '~/pages/Main/Lapbaocao/lapbaocao'
 
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: HeaderOnly },
@@ -24,7 +25,8 @@ const publicRoutes = [
   { path: config.routes.tracuu, component: Tracuu, layout: HeaderAfterLogin },
   { path: config.routes.themthanhvien, component: Themthanhvien, layout: HeaderAfterLogin },
   { path: config.routes.themthanhtich, component: Themthanhtich, layout: HeaderAfterLogin },
-  { path: config.routes.thaydoithongtin, component: Thaydoithongtin, layout: HeaderAfterLogin }
+  { path: config.routes.thaydoithongtin, component: Thaydoithongtin, layout: HeaderAfterLogin },
+  { path: config.routes.lapbaocao, component: Lapbaocao, layout: HeaderAfterLogin }
 ]
 
 const privateRoutes = [

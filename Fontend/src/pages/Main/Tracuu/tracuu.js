@@ -56,7 +56,7 @@ export const Tracuu = () => {
                   <strong>Cha/Mẹ:</strong> {result.TenChaHoacMe} <br />
                   <strong>Mã thành viên:</strong> {result.MaThanhVien} <br />
                   <strong>Mã Cha/Mẹ:</strong> {result.MaChaHoacMe} <br />
-                </li >
+                </li>
               ))}
             </ul >
           </div >

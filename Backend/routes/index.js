@@ -8,6 +8,7 @@ const themthanhtichRoute = require("./Themthanhtich")
 const ghinhanketthucRoute = require("./Ghinhanketthuc")
 const themthanhvienRoute = require("./Themthanhvien")
 const thaydoithongtinRoute = require("./Thaydoithongtin")
+const lapbaocaoRoute = require("./Lapbaocao")
 const tracuuRoute = require("./Tracuu")
 
 function route(app) {
@@ -17,6 +18,7 @@ function route(app) {
   app.use('/themthanhvien', authenticateToken, themthanhvienRoute)
   app.use('/ghinhanketthuc', authenticateToken, ghinhanketthucRoute)
   app.use('/thaydoithongtin', authenticateToken, thaydoithongtinRoute)
+  app.use('/lapbaocao', authenticateToken, lapbaocaoRoute)
   app.use('/tracuu', authenticateToken, tracuuRoute)
   app.use('/', authenticateToken, homeRoute)
 }

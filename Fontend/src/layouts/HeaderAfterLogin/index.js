@@ -4,7 +4,7 @@ import './HeaderAfterLogin.scss'
 
 function HeaderAfterLogin({ children }) {
   return (
-    <div>
+    <div className="body-headerafterlogin">
       <Header />
       <div className="container-headerafterlogin">
         <Sidebar />
