@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   /* Đưa phần tử vào giữa trang */
-  height: 91vh;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -74,7 +73,7 @@
 .gioitinh,
 .nghenghiep,
 .lathanhviencu {
-  width: 80%;
+  width: 100%;
   height: 36px;
   position: relative;
   cursor: text;

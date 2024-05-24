@@ -7,8 +7,10 @@
   border-radius: 5px;
   background-color: #f9f9f9;
   align-self: center;
-  /* Đưa phần tử vào giữa theo chiều dọc */
   margin-top: 10px;
+  position: absolute;
+  top: 80px;
+  width: 600px;
 }
 
 .thaydoithongtin-container {
@@ -17,6 +19,8 @@
   border-radius: 5px;
   background-color: #f9f9f9;
   align-self: center;
+  position: absolute;
+  top: 80px;
 }
 
 .member-form-container h2 {
@@ -66,7 +70,7 @@
 .quequanmoi,
 .nghenghiepmoi {
   width: 100%;
-  height: 41px;
+  height: 35px
 }
 
 .react-datepicker-wrapper {
