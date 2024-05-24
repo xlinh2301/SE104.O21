@@ -1,25 +1,21 @@
-import React from 'react';
-import ReactFamilyTree from 'react-family-tree';
-import FamilyNode from '~/components/FamilyNode/FamilyNode';
+import React from "react";
+import ReactFamilyTree from "react-family-tree";
+import FamilyNode from "~/components/FamilyNode/FamilyNode"; // Define your FamilyNode component
 
 const WIDTH = 70;
 const HEIGHT = 80;
 
-const familyTreeNodes = [
-  { id: 1, name: 'John', parentId: null },
-  { id: 2, name: 'Alice', parentId: 1 },
-  { id: 3, name: 'Bob', parentId: 1 },
-  { id: 4, name: 'Carol', parentId: 2 },
-  // Add more nodes as needed
-];
-
-const rootId = 1; // ID of the root node
-
 export const Caygiapha = () => {
-  // Ensure nodes are defined and valid
-  if (!familyTreeNodes || familyTreeNodes.length === 0) {
-    return <div>No data available</div>;
-  }
+  // Mock family tree data
+  const familyTreeNodes = [
+    { id: 1, name: "John", parentId: null },
+    { id: 2, name: "Alice", parentId: 1 },
+    { id: 3, name: "Bob", parentId: 1 },
+    { id: 4, name: "Carol", parentId: 2 },
+    // Add more nodes as needed
+  ];
+
+  const rootId = 1; // ID of the root node
 
   return (
     <ReactFamilyTree
