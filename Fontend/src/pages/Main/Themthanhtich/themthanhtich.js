@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "./themthanhtich.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Themthanhtich = () => {
+  useEffect(() => {
+    document.title = "Thêm thành tích";
+  }, []);
   const [formData, setFormData] = useState({
-    hoten: "",
+    mathanhvien: "",
     loaithanhtich: "Giải nhất quốc gia",
     tenthanhtich: "",
     ngayphatsinh: new Date(),
@@ -44,6 +47,7 @@ export const Themthanhtich = () => {
       console.log(response.data);
       alert("Đã thêm mới 1 thành tích!!");
     } catch (error) {
+      alert(error.response.data.message);
       console.error("Error:", error);
     }
   };
@@ -59,29 +63,29 @@ export const Themthanhtich = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="hoten">Họ tên</label>
-            <input type="text" name="hoten" value={formData.hoten} onChange={handleChange} />
+            <label htmlFor="mathanhvien">Mã thành viên</label>
+            <input type="text" name="mathanhvien" value={formData.mathanhvien} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label htmlFor="loaithanhtich">Loại thành tích</label>
             <select name="loaithanhtich" className="loaithanhtich" value={formData.loaithanhtich} onChange={handleChange}>
-              <option value="Giải nhất quốc gia">Giải nhất quốc gia</option>
-              <option value="Huy chương vàng thể thao">Huy chương vàng thể thao</option>
-              <option value="Giải thưởng nghiên cứu khoa học">Giải thưởng nghiên cứu khoa học</option>
-              <option value="Bằng khen của Bộ Giáo dục">Bằng khen của Bộ Giáo dục</option>
-              <option value="Giải thưởng tình nguyện">Giải thưởng tình nguyện</option>
-              <option value="Giải thưởng sáng tạo trẻ">Giải thưởng sáng tạo trẻ</option>
-              <option value="Giải nhất cuộc thi toán học">Giải nhất cuộc thi toán học</option>
-              <option value="Giải nhất cuộc thi văn học">Giải nhất cuộc thi văn học</option>
-              <option value="Giải nhì quốc gia">Giải nhì quốc gia</option>
-              <option value="Giải ba quốc gia">Giải ba quốc gia</option>
+              <option value="Bằng Cấp Học Vấn">Bằng Cấp Học Vấn</option>
+              <option value="Giải Thưởng Nghề Nghiệp">Giải Thưởng Nghề Nghiệp</option>
+              <option value="Thành Tựu Khoa Học">Thành Tựu Khoa Học</option>
+              <option value="Thành Tích Văn Hóa - Nghệ Thuật">Thành Tích Văn Hóa - Nghệ Thuật</option>
+              <option value="Thành Tích Thể Thao">Thành Tích Thể Thao</option>
+              <option value="Hoạt Động Cộng Đồng">Hoạt Động Cộng Đồng</option>
+              <option value="Danh Hiệu Quân Sự">Danh Hiệu Quân Sự</option>
+              <option value="Chức Vụ Lãnh Đạo">Chức Vụ Lãnh Đạo</option>
+              <option value="Công Trình và Sáng Chế">Công Trình và Sáng Chế</option>
+              <option value="Thành Tựu Gia Đình">Thành Tựu Gia Đình</option>
             </select>
           </div>
         </div>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="tenthanhtich">Tên thành tích</label>
-            <input type="text" name="tenthanhtich" value={formData.tenthanhtich} onChange={handleChange} />
+            <input type="text" name="tenthanhtich" value={formData.tenthanhtich} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label htmlFor="ngayphatsinh">Ngày phát sinh</label>

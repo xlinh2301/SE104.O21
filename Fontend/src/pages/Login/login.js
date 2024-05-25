@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
 export const Login = () => {
+  useEffect(() => {
+    document.title = "Đăng nhập";
+  }, []);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -65,10 +68,15 @@ export const Login = () => {
             Đăng nhập
           </button>
         </form>
+        <div className="login-footer">
+          <Link to="/" className="login-back-home">
+            Quay về trang chủ
+          </Link>
+        </div>
         <div className="login-signup">
           <p className="login-signup-text">Bạn chưa có tài khoản? </p>
           <Link to="/register" className="login-signup-link">
-            Đăng kí
+            <p>Đăng kí</p>
           </Link>
         </div>
       </div>

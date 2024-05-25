@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./signup.scss";
 
 export const Signup = () => {
+  useEffect(() => {
+    document.title = "Đăng kí";
+  }, []);
   const [name, setName] = useState('');
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
@@ -93,7 +96,7 @@ export const Signup = () => {
           <div className="signup-body-footer">
             <p className="signup-body-footer-text">Bạn đã có tài khoản?</p>
             <Link to="/login" className="signup-body-box-login">
-              Đăng nhập
+              <p>Đăng nhập</p>
             </Link>
           </div>
         </div>

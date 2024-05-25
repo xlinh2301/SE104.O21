@@ -18,7 +18,7 @@ import { Lapbaocao } from '~/pages/Main/Lapbaocao/lapbaocao'
 const publicRoutes = [
   { path: config.routes.home, component: Home, layout: HeaderOnly },
   { path: config.routes.login, component: Login, layout: null },
-  { path: config.routes.signup, component: Signup, layout: HeaderOnly },
+  { path: config.routes.signup, component: Signup, layout: null },
   // { path: config.routes.main, component: Main },
   { path: config.routes.main, component: Caygiapha, layout: HeaderAfterLogin },
   { path: config.routes.ghinhanketthuc, component: Ghinhanketthuc, layout: HeaderAfterLogin },

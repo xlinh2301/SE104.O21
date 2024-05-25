@@ -1,37 +1,37 @@
 const ThemthanhtichController = {
   async index(req, res) {
-    const { hoten, loaithanhtich, tenthanhtich, ngayphatsinh } = req.body;
+    const { mathanhvien, loaithanhtich, tenthanhtich, ngayphatsinh } = req.body;
 
     console.log(req.body);
 
     try {
       const pool = req.app.get('db');
 
-      // Lấy mã thành viên dựa trên họ và tên
-      let [hoTenRows] = await pool.query(`SELECT MaThanhVien FROM thanhvien WHERE HoVaTen = ?`, [hoten]);
-      let maThanhVien = hoTenRows[0]?.MaThanhVien;
+      // // Lấy mã thành viên dựa trên họ và tên
+      // let [hoTenRows] = await pool.query(`SELECT MaThanhVien FROM thanhvien WHERE HoVaTen = ?`, [hoten]);
+      // let maThanhVien = hoTenRows[0]?.MaThanhVien;
 
       // Lấy mã loại thành tích dựa trên tên loại thành tích
       let [loaiThanhTichRows] = await pool.query(`SELECT MaLoaiThanhTich FROM loaithanhtich WHERE TenLoaiThanhTich = ?`, [loaithanhtich]);
       let maLoaiThanhTich = loaiThanhTichRows[0]?.MaLoaiThanhTich;
 
       // Kiểm tra nếu không tìm thấy thành viên hoặc loại thành tích
-      if (!maThanhVien || !maLoaiThanhTich) {
+      if (!mathanhvien || !maLoaiThanhTich) {
         throw new Error('Không tìm thấy thành viên hoặc loại thành tích');
       }
 
       // Kiểm tra nếu đã có bản ghi trong ct_thanhtich
-      let [ctThanhTichRows] = await pool.query(`SELECT * FROM ct_thanhtich WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, maThanhVien]);
+      let [ctThanhTichRows] = await pool.query(`SELECT * FROM ct_thanhtich WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, mathanhvien]);
       let soLuong = ctThanhTichRows[0]?.SoLuong;
       let maCTThanhTich;
 
       if (soLuong != null) {
         // Nếu đã có bản ghi, cập nhật số lượng
-        await pool.query(`UPDATE ct_thanhtich SET SoLuong = SoLuong + 1 WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, maThanhVien]);
+        await pool.query(`UPDATE ct_thanhtich SET SoLuong = SoLuong + 1 WHERE MaLoaiThanhTich = ? AND MaThanhVien = ?`, [maLoaiThanhTich, mathanhvien]);
         maCTThanhTich = ctThanhTichRows[0].MaCTThanhTich;
       } else {
         // Nếu chưa có bản ghi, thêm mới
-        const [insertCtThanhTichResult] = await pool.query(`INSERT INTO ct_thanhtich (MaLoaiThanhTich, SoLuong, MaThanhVien) VALUES (?, ?, ?)`, [maLoaiThanhTich, 1, maThanhVien]);
+        const [insertCtThanhTichResult] = await pool.query(`INSERT INTO ct_thanhtich (MaLoaiThanhTich, SoLuong, MaThanhVien) VALUES (?, ?, ?)`, [maLoaiThanhTich, 1, mathanhvien]);
         maCTThanhTich = insertCtThanhTichResult.insertId;
       }
 

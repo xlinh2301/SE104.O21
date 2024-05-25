@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import "./lapbaocao.scss";
 
 export const Lapbaocao = () => {
+  useEffect(() => {
+    document.title = "Lập báo cáo";
+  }, []);
   const [startYear, setStartYear] = useState('');
   const [endYear, setEndYear] = useState('');
   const [reportType, setReportType] = useState('Tăng/Giảm');
@@ -10,6 +13,11 @@ export const Lapbaocao = () => {
   const [error, setError] = useState('');
 
   const fetchReport = async () => {
+    if (!startYear || !endYear) {
+      setError('Cả năm bắt đầu và năm kết thúc đều phải được điền.');
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get('http://localhost:3001/lapbaocao', {
@@ -25,6 +33,7 @@ export const Lapbaocao = () => {
     } catch (error) {
       setError('Lỗi: ' + (error.response?.data?.message || error.message));
       console.error('Lỗi:', error);
+      alert(error.response.data.message);
     }
   };
 

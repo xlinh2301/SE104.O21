@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "jquery": "^3.7.1",
     "react": "^18.3.1",
+    "react-autosuggest": "^10.1.0",
     "react-datepicker": "^6.9.0",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -53,9 +54,13 @@
     "mongoose": "^8.3.4",
     "react-app-rewire-alias": "^1.1.7",
     "react-app-rewired": "^2.2.1",
+    "react-d3-tree": "^3.6.2",
     "react-datetime": "^3.2.0",
     "react-family-tree": "^3.2.0",
+    "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.0",
-    "sass": "^1.77.0"
+    "react-tree-graph": "^8.0.2",
+    "sass": "^1.77.0",
+    "styled-components": "^6.1.11"
   }
 }

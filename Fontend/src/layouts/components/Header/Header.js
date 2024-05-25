@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -11,13 +12,12 @@ function Header() {
         <li className="signup-nav-item">
           <a className="signup-nav-item-text" href="/login">Cây</a>
         </li>
-        <li className="signup-nav-item">
-          <a className="signup-nav-item-text" href="#">Liên hệ</a>
-        </li>
       </ul>
 
       <div className="signup-nav-login">
-        <a className="signup-nav-login-text" href="/login">Đăng nhập</a>
+        <Link to='/login' className="signup-nav-login-text">
+          Đăng nhập
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-const calculateDoi = async (pool, loaiquanhemoi, tenThanhVienCu, maThanhVien) => {
+const calculateDoi = async (pool, loaiquanhemoi, tenThanhVienCu) => {
   let doiThanhVien = 0;
   let maThanhVienCu = -1;
   let tenChaHoacMe = -1;

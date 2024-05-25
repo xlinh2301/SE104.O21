@@ -1,6 +1,16 @@
-.body-caygiapha {
-  height: 100vh;
+.caygiapha-container {
+  text-align: center;
+  margin: 20px;
+  width: 100%;
+  overflow: hidden;
+}
 
-  // background-color: yellow;
-  position: absolute;
+.rd3t-g {
+  pointer-events: none;
+  /* Ngăn chặn sự kiện di chuyển */
+}
+
+
+#treeWrapper {
+  margin-top: 20px;
 }

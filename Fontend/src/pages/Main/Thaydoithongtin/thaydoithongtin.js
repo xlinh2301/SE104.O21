@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import "./thaydoithongtin.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Thaydoithongtin = () => {
+  useEffect(() => {
+    document.title = "Thay đổi thông tin";
+  }, []);
   const [formData, setFormData] = useState({
     hoten: "",
     maThanhVien: "",
@@ -38,6 +41,7 @@ export const Thaydoithongtin = () => {
 
       setSearchResult(response.data);
     } catch (error) {
+      alert(error.response.data.message)
       console.error("Error:", error);
       setSearchResult(null);
     }
@@ -55,6 +59,7 @@ export const Thaydoithongtin = () => {
 
       alert("Cập nhật thông tin thành công!");
     } catch (error) {
+      alert(error.response.data.message)
       console.error("Error:", error);
     }
   };
@@ -66,7 +71,7 @@ export const Thaydoithongtin = () => {
 
     if (status === 'dead') {
       return (
-        <div className="member-form-container">
+        <div className="results-form-container">
           <p>Tình trạng: Mất</p>
           <div className="form-row">
             <div className="form-group">
@@ -100,12 +105,12 @@ export const Thaydoithongtin = () => {
       );
     } else if (status === 'alive') {
       return (
-        <div className="member-form-container">
+        <div className="results-form-container">
           <p>Tình trạng: Còn sống</p>
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="mathanhviencu">Mã thành viên cũ</label>
-              <input type="text" name="mathanhviencu" value={formData.mathanhviencu} onChange={handleChange} />
+              <input type="text" name="mathanhviencu" value={formData.mathanhviencu} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="loaiquanhemoi">Loại quan hệ mới</label>
@@ -156,6 +161,7 @@ export const Thaydoithongtin = () => {
             name="hoten"
             value={formData.hoten}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -166,6 +172,7 @@ export const Thaydoithongtin = () => {
             name="maThanhVien"
             value={formData.maThanhVien}
             onChange={handleChange}
+            required
           />
         </div>
         <button type="submit" className="button-addmember">Tìm kiếm</button>

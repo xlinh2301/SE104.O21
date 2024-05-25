@@ -1,27 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #f0f0f0;
+}
+
 .signup-body {
   margin-top: 0;
   width: 100%;
-  height: 596px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #DEFFE1;
+  background: linear-gradient(to right, #ece9e6, #ffffff);
 
   &-text {
     color: #000;
-    font-family: "Microsoft YaHei UI";
-    font-style: normal;
-    line-height: normal;
+    font-family: 'Times New Roman', Times, serif;
     width: 40%;
+    text-align: center;
+    margin-bottom: 20px;
 
     &-1 {
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 700;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #6eb1ff;
+      padding-bottom: 10px;
     }
 
     &-2 {
-      font-size: 16px;
+      font-size: 18px;
+      color: #666;
     }
   }
 
@@ -31,6 +46,10 @@
     justify-content: center;
     flex-direction: column;
     width: 40%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
     &-1 {
       width: 100%;
@@ -39,35 +58,40 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin: 10px;
+        margin: 10px 0;
         width: 100%;
 
         &-text {
-          margin: 5px 0;
+          margin-bottom: 5px;
           color: #707070;
-          font-family: "Microsoft YaHei UI";
           font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
         }
 
         .signup-body-box-input {
-          margin: 0;
           width: 100%;
-          height: 30px;
-        }
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: border 0.3s;
 
+          &:focus {
+            border-color: #6eb1ff;
+          }
+        }
       }
 
       .signup-body-box-button {
         width: 100%;
-        height: 30px;
-        margin: 10px;
+        padding: 10px;
+        margin-top: 20px;
         background-color: #6eb1ff;
         color: #FFF;
         border: none;
         border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
 
         &:hover {
           background-color: #53a0f8;
@@ -78,15 +102,26 @@
     .signup-body-footer {
       display: flex;
       justify-content: center;
+      align-items: center;
+      margin-top: 20px;
 
       &-text {
-        margin: 5px;
+        color: #707070;
+        font-size: 16px;
+        margin-right: 5px;
       }
 
       .signup-body-box-login {
-        margin: 5px;
+        color: #6eb1ff;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #53a0f8;
+        }
       }
     }
-
   }
 }

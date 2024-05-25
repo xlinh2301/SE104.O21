@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "./themthanhvien.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Themthanhvien = () => {
+  useEffect(() => {
+    document.title = "Thêm thành viên";
+  }, []);
   const [formData, setFormData] = useState({
-    tenthanhviencu: "", // New field
+    mathanhviencu: "", // New field
     loaiquanhe: "Con", // Default value
     ngayphatsinh: new Date(),
     hovaten: "",
@@ -47,7 +50,7 @@ export const Themthanhvien = () => {
       const token = localStorage.getItem('token');
       const response = await axios.post("http://localhost:3001/themthanhvien", {
         ...formData,
-        tenthanhviencu: formData.loaiquanhe === "Gốc" ? null : formData.tenthanhviencu, // Set tenthanhviencu to null if loaiquanhe is "Gốc"
+        mathanhviencu: formData.loaiquanhe === "Gốc" ? null : formData.mathanhviencu, // Set mathanhviencu to null if loaiquanhe is "Gốc"
         ngaygiosinh: formattedNgayGioSinh,
         ngayphatsinh: formattedNgayPhatSinh,
       },
@@ -58,7 +61,7 @@ export const Themthanhvien = () => {
       alert("Đã thêm mới 1 thành viên!!");
     } catch (error) {
       console.error("Error:", error);
-      alert("Đã xảy ra lỗi khi thêm thành viên");
+      alert(error.response.data.message);
     }
   };
 
@@ -68,8 +71,8 @@ export const Themthanhvien = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="tenthanhviencu">Tên thành viên cũ</label>
-            <input type="text" name="tenthanhviencu" value={formData.tenthanhviencu} onChange={handleChange} />
+            <label htmlFor="mathanhviencu">Mã thành viên cũ</label>
+            <input type="text" name="mathanhviencu" value={formData.mathanhviencu} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label htmlFor="loaiquanhe">Loại quan hệ</label>
@@ -91,7 +94,7 @@ export const Themthanhvien = () => {
           </div>
           <div className="form-group">
             <label htmlFor="hovaten">Họ và tên</label>
-            <input type="text" name="hovaten" value={formData.hovaten} onChange={handleChange} />
+            <input type="text" name="hovaten" value={formData.hovaten} onChange={handleChange} required />
           </div>
         </div>
         <div className="form-row">
@@ -146,7 +149,7 @@ export const Themthanhvien = () => {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="diachi">Địa chỉ</label>
-            <input type="text" name="diachi" value={formData.diachi} onChange={handleChange} />
+            <input type="text" name="diachi" value={formData.diachi} onChange={handleChange} required />
           </div>
         </div>
         <button type="submit" className="button-addmember">Thêm thành viên</button>

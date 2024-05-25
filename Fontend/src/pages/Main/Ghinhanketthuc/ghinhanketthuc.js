@@ -1,11 +1,14 @@
 import "./ghinhanketthuc.scss"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "./ghinhanketthuc.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Ghinhanketthuc = () => {
+  useEffect(() => {
+    document.title = "Ghi nhận kết thúc";
+  }, []);
   const [formData, setFormData] = useState({
     hoten: "",
     mathanhvien: "",
@@ -47,6 +50,7 @@ export const Ghinhanketthuc = () => {
       alert("Đã ghi nhận thành công!!");
     } catch (error) {
       console.error("Error:", error);
+      alert(error.response.data.message);
     }
   };
 
@@ -108,7 +112,7 @@ export const Ghinhanketthuc = () => {
             </select>
           </div>
         </div>
-        <button type="submit" className="button-addmember">Thêm thành tích</button>
+        <button type="submit" className="button-addmember">Ghi nhận kết thúc</button>
       </form>
     </div>
   );

@@ -3,7 +3,7 @@ const calculateDoi = require('../utils/calculateDoi');
 
 const ThemthanhvienController = {
   async index(req, res) {
-    const { tenthanhviencu, ngayphatsinh, gioitinh, quequan, diachi, loaiquanhe, hovaten, ngaygiosinh, nghenghiep } = req.body;
+    const { mathanhviencu, ngayphatsinh, gioitinh, quequan, diachi, loaiquanhe, hovaten, ngaygiosinh, nghenghiep } = req.body;
 
     console.log(req.body);
 
@@ -20,8 +20,12 @@ const ThemthanhvienController = {
       let [ngheNghiepRows] = await pool.query(`SELECT MaNgheNghiep FROM nghenghiep WHERE TenNgheNghiep = ?`, [nghenghiep]);
       let maNgheNghiep = ngheNghiepRows[0]?.MaNgheNghiep;
 
+      let [maThanhVienCuRows] = await pool.query(`SELECT HoVaTen FROM thanhvien WHERE MaThanhVien = ?`, [mathanhviencu]);
+      let tenthanhviencu = maThanhVienCuRows[0]?.HoVaTen;
+
       console.log("Mã quê quán", maQueQuan);
       console.log("Mã loại quan hệ", maLoaiQuanHe);
+      console.log("Tên thành viên cũ", tenthanhviencu);
 
       const { doiThanhVien, maThanhVienCu, tenChaHoacMe } = await calculateDoi(pool, loaiquanhe, tenthanhviencu);
 
@@ -36,7 +40,7 @@ const ThemthanhvienController = {
       const [thanhVienRows] = await pool.query(
         `INSERT INTO thanhvien (MaLoaiQuanHe, NgayPhatSinhMoiQuanHe, HoVaTen, GioiTinh, NgayGioSinh, MaQueQuan, MaNgheNghiep, DiaChi, MaThanhVienCu, TenThanhVienCu)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [maLoaiQuanHe, ngayphatsinh, hovaten, gioitinh, ngaygiosinh, maQueQuan, maNgheNghiep, diachi, maThanhVienCu, tenthanhviencu]
+        [maLoaiQuanHe, ngayphatsinh, hovaten, gioitinh, ngaygiosinh, maQueQuan, maNgheNghiep, diachi, mathanhviencu, tenthanhviencu]
       );
 
       // Lấy ID của thành viên vừa thêm
@@ -46,7 +50,7 @@ const ThemthanhvienController = {
       const [DSThanhVienRows] = await pool.query(
         `INSERT INTO danhsachthanhvien (HoVaTen, NgaySinh, Doi, TenChaHoacMe, MaChaHoacMe, MaThanhVien)
         VALUES (?, ?, ?, ?, ?, ?)`,
-        [hovaten, ngaygiosinh, doiThanhVien, tenChaHoacMe, maThanhVienCu, maThanhVienMoi]
+        [hovaten, ngaygiosinh, doiThanhVien, tenChaHoacMe, mathanhviencu, maThanhVienMoi]
       );
 
       console.log([thanhVienRows, DSThanhVienRows]);
