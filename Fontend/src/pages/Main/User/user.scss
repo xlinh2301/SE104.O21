@@ -1,0 +1,33 @@
+// user.scss
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-container {
+  width: 100%;
+  max-width: 800px; // Đặt kích thước tối đa cho table-container
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: auto; // Kích hoạt cuộn khi cần thiết
+}
+
+.user-row {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-row>div {
+  margin-bottom: 10px;
+}
+
+.user-row>div:first-child {
+  font-weight: bold;
+}

@@ -11,6 +11,7 @@ const thaydoithongtinRoute = require("./Thaydoithongtin")
 const caygiaphaRoute = require("./Caygiapha")
 const lapbaocaoRoute = require("./Lapbaocao")
 const tracuuRoute = require("./Tracuu")
+const userRoute = require("./User")
 
 function route(app) {
   app.use('/login', loginRoute)
@@ -22,6 +23,7 @@ function route(app) {
   app.use('/caygiapha', authenticateToken, caygiaphaRoute)
   app.use('/lapbaocao', authenticateToken, lapbaocaoRoute)
   app.use('/tracuu', authenticateToken, tracuuRoute)
+  app.use('/user', authenticateToken, userRoute)
   app.use('/', authenticateToken, homeRoute)
 }
 

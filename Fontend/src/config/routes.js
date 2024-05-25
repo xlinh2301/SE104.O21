@@ -9,6 +9,7 @@ const routes = {
   themthanhtich: '/themthanhtich',
   thaydoithongtin: '/thaydoithongtin',
   lapbaocao: '/lapbaocao',
+  user: '/user',
 };
 
 export default routes;

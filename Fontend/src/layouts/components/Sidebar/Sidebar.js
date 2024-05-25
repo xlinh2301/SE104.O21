@@ -10,6 +10,7 @@ function Sidebar() {
   };
 
   const menuItems = [
+    // { name: 'User', label: 'Thông tin người dùng', url: '/user' },
     { name: 'Giapha', label: 'Gia phả', url: '/main' },
     { name: 'Tracuu', label: 'Tra cứu', url: '/tracuu' },
     { name: 'Themthanhvien', label: 'Thêm thành viên', url: '/themthanhvien' },

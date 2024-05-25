@@ -66,11 +66,11 @@ export const Ghinhanketthuc = () => {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="hoten">Họ tên</label>
-            <input type="text" name="hoten" value={formData.hoten} onChange={handleChange} />
+            <input type="text" name="hoten" value={formData.hoten} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label htmlFor="mathanhvien">Mã thành viên</label>
-            <input type="text" name="mathanhvien" value={formData.mathanhvien} onChange={handleChange} />
+            <input type="text" name="mathanhvien" value={formData.mathanhvien} onChange={handleChange} required />
           </div>
         </div>
         <div className="form-row">
