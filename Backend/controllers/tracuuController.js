@@ -11,7 +11,18 @@ const TracuuController = {
     try {
       const pool = req.app.get('db');
 
-      const [rows] = await pool.query(`SELECT * FROM danhsachthanhvien WHERE HoVaTen = ?`, [hoTen]);
+      query = `
+      SELECT tv.*, ds.*, qh.*, nn.*, qq.*
+      FROM thanhvien tv
+      JOIN danhsachthanhvien ds ON ds.MaThanhVien = tv.MaThanhVien
+      JOIN quanhe qh ON qh.MaLoaiQuanHe = tv.MaLoaiQuanHe
+      JOIN nghenghiep nn ON nn.MaNgheNghiep = tv.MaNgheNghiep
+      JOIN quequan qq ON qq.MaQueQuan = tv.MaQueQuan
+      LEFT JOIN thanhvien tv2 ON tv2.MaThanhVien = tv.MaThanhVienCu
+      WHERE tv.HoVaTen = ?;
+      `
+
+      const [rows] = await pool.query(query, [hoTen]);
       console.log([rows])
 
       if (rows.length > 0) {

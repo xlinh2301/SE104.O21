@@ -5,19 +5,35 @@ const ThemthanhtichController = {
     console.log(req.body);
 
     try {
+      // Validate the date
+      const date = new Date(ngayphatsinh);
+      const today = new Date();
+      if (isNaN(date.getTime()) || date > today) {
+        return res.status(400).json({ message: 'Ngày phát sinh không hợp lệ' });
+      }
+
       const pool = req.app.get('db');
 
-      // // Lấy mã thành viên dựa trên họ và tên
-      // let [hoTenRows] = await pool.query(`SELECT MaThanhVien FROM thanhvien WHERE HoVaTen = ?`, [hoten]);
-      // let maThanhVien = hoTenRows[0]?.MaThanhVien;
+      // Fetch the member's birth date
+      let [birthDateRows] = await pool.query(`SELECT NgayGioSinh FROM thanhvien WHERE MaThanhVien = ?`, [mathanhvien]);
+      let birthDate = birthDateRows[0]?.NgayGioSinh;
+
+      if (!birthDate) {
+        return res.status(400).json({ message: 'Không tìm thấy thành viên' });
+      }
+
+      birthDate = new Date(birthDate);
+      if (date < birthDate) {
+        return res.status(400).json({ message: 'Ngày phát sinh không được trước ngày sinh của thành viên' });
+      }
 
       // Lấy mã loại thành tích dựa trên tên loại thành tích
       let [loaiThanhTichRows] = await pool.query(`SELECT MaLoaiThanhTich FROM loaithanhtich WHERE TenLoaiThanhTich = ?`, [loaithanhtich]);
       let maLoaiThanhTich = loaiThanhTichRows[0]?.MaLoaiThanhTich;
 
-      // Kiểm tra nếu không tìm thấy thành viên hoặc loại thành tích
-      if (!mathanhvien || !maLoaiThanhTich) {
-        throw new Error('Không tìm thấy thành viên hoặc loại thành tích');
+      // Kiểm tra nếu không tìm thấy loại thành tích
+      if (!maLoaiThanhTich) {
+        return res.status(400).json({ message: 'Không tìm thấy loại thành tích' });
       }
 
       // Kiểm tra nếu đã có bản ghi trong ct_thanhtich

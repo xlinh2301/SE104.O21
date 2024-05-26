@@ -62,7 +62,7 @@ const ThaydoithongtinController = {
         let [tenThanhVienCuRows] = await pool.query(`SELECT HoVaTen FROM thanhvien WHERE MaThanhVien = ?`, [mathanhviencu]);
         let tenThanhVienCu = tenThanhVienCuRows[0]?.HoVaTen;
 
-        const { doiThanhVien, maThanhVienCu, tenChaHoacMe } = await calculateDoi(pool, loaiquanhemoi, tenThanhVienCu, maThanhVien);
+        const { doiThanhVien, maThanhVienCu, tenChaHoacMe } = await calculateDoi(pool, loaiquanhemoi, tenThanhVienCu);
 
         console.log("Đời: ", doiThanhVien)
         console.log("Mã thành viên cũ: ", maThanhVienCu)

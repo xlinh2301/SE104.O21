@@ -10,7 +10,7 @@ export const Themthanhtich = () => {
   }, []);
   const [formData, setFormData] = useState({
     mathanhvien: "",
-    loaithanhtich: "Giải nhất quốc gia",
+    loaithanhtich: "Bằng Cấp Học Vấn",
     tenthanhtich: "",
     ngayphatsinh: new Date(),
   });
