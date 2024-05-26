@@ -36,9 +36,9 @@ $ yarn # or npm i
 ```
 
 # Usage (run fullstack app on your machine)
+- Dbeaver-Docker: docker pull nxlinh2301/caygiapha-project:finalproject
 
 ## Prerequisites
-- [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
 - [Node](https://nodejs.org/en/download/) 
 - [npm](https://nodejs.org/en/download/package-manager/)
 
