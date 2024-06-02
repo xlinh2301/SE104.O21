@@ -45,6 +45,16 @@ $ yarn # or npm i
 notice, you need client and server runs concurrently in different terminal session, in order to make them talk to each other
 
 ## Client-side usage(PORT: 3000)
+### Edit backend env file.
+```terminal
+DB_HOST = localhost
+DB_USER = root
+DB_PASSWORD = 123456
+DB_DATABASE = caygiapha
+DB_PORT = 3307
+PORT = 3001
+JWToken = 123
+```
 ### Project Initialization
 
 ```terminal
